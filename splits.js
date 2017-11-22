@@ -28,6 +28,22 @@ $(function() {
 
     $('#splits tr td').removeClass('gold');
     updateTimer();
+    calculateTimeSave();
+  };
+
+  var calculateTimeSave = function() {
+    var perfect = timer.index > 0 ? timer.times[timer.index - 1] : 0;
+    for (var i = timer.index; i < game.splits.length; ++i) {
+      perfect += golds[i];
+    }
+    var save = bests[bests.length - 1] - perfect;
+    if (save <= 0) {
+      $('#time_save').text('None');
+      $('#time_save').addClass('over');
+    } else {
+      $('#time_save').text(formatTime(save));
+      $('#time_save').removeClass('over');
+    }
   };
 
   var nextSplit = function() {
@@ -43,6 +59,7 @@ $(function() {
     }
 
     timer.index += 1;
+    calculateTimeSave();
 
     if (timer.index >= game.splits.length) {
       stop();
@@ -54,6 +71,7 @@ $(function() {
     if (timer.index > 0) {
       $($('#splits tr td.time')[timer.index]).text('');
       timer.index -= 1;
+      calculateTimeSave();
       $($('#splits tr td:first-child')[timer.index]).removeClass('gold');
     }
   };
@@ -157,6 +175,14 @@ $(function() {
     localStorage.setItem(game.key, JSON.stringify(run));
   };
 
+  var addInfo = function(label, id, value) {
+    var tds = [
+      '<td>' + label + '</td>',
+      '<td id="' + id + '" class="time">' + formatTime(value) + '</td>'
+    ];
+    $('#info').append('<tr>' + tds.join('') + '</tr>');
+  };
+
   var loadGame = function(key) {
     game = games[key];
     game.key = key;
@@ -193,6 +219,18 @@ $(function() {
       }
 
       console.log('Got data: ' + data);
+    }
+
+    $('#info').empty();
+    if (golds.length > 0) {
+      var sumOfBest = 0;
+      for (var i = 0; i < golds.length; ++i) {
+        sumOfBest += golds[i];
+      }
+
+      addInfo('Sum of best', 'sum_best', sumOfBest);
+      addInfo('Possible time save', 'time_save', 0);
+      calculateTimeSave();
     }
 
     $('#background').attr('src', key + '.png');
