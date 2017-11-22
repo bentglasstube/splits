@@ -2,7 +2,7 @@ $(function() {
   var timer = {};
   var game = {};
   var bests = [];
-  // var bests = [ 609699, 715032, 911897, 1236777, 1636572, 2166450, 2627996, 2762127, 3036691, 3678418, 4209097, 4235179, 4454795, 0, 5200000 ];
+  var golds = [];
 
   var running = function() {
     return timer.timer_id > 0;
@@ -26,11 +26,22 @@ $(function() {
     timer.index = 0;
     timer.times = [game.offset];
 
+    $('#splits tr td').removeClass('gold');
     updateTimer();
   };
 
   var nextSplit = function() {
-    timer.times[timer.index] = performance.now() - timer.start;
+    var thisTime = performance.now() - timer.start;
+    var delta = timer.index == 0 ? thisTime : thisTime - timer.times[timer.index - 1];
+
+    timer.times[timer.index] = thisTime;
+    if (delta < golds[timer.index]) {
+      console.log('Gold split!');
+      $($('#splits tr td:first-child')[timer.index]).addClass('gold');
+    } else {
+      console.log('Not gold: ' + delta + ' >= ' + golds[timer.index]);
+    }
+
     timer.index += 1;
 
     if (timer.index >= game.splits.length) {
@@ -43,6 +54,7 @@ $(function() {
     if (timer.index > 0) {
       $($('#splits tr td.time')[timer.index]).text('');
       timer.index -= 1;
+      $($('#splits tr td:first-child')[timer.index]).removeClass('gold');
     }
   };
 
@@ -61,6 +73,7 @@ $(function() {
         $(trs[i]).removeClass('current');
         time = timer.times[i];
       }
+
       if (bests[i] > 0) {
         time -= bests[i];
         if (time > 0) {
@@ -122,17 +135,26 @@ $(function() {
   };
 
   var saveRun = function() {
-    var thisTime = timer.times[game.splits.length - 1];
-    var bestTime = bests[game.splits.length - 1];
+    const thisTime = timer.times[game.splits.length - 1];
+    const bestTime = bests[game.splits.length - 1];
+
+    for (var i = 0; i < game.splits.length; ++i) {
+      const delta = i > 0 ? timer.times[i] - timer.times[i - 1] : timer.times[i];
+      if (golds[i] == undefined || delta < golds[i]) {
+        console.log('Saving gold for ' + game.splits[i]);
+        golds[i] = delta;
+      }
+    }
 
     if (bestTime == undefined || bestTime == 0 || thisTime < bestTime) {
       console.log('New PB, saving run');
-      localStorage.setItem(game.key, timer.times.join(','));
       bests = timer.times;
     } else {
       console.log('Not better than PB (' + thisTime + ' > ' + bestTime + '), ignoring');
     }
 
+    var run = { v: 2, golds: golds, best: bests };
+    localStorage.setItem(game.key, JSON.stringify(run));
   };
 
   var loadGame = function(key) {
@@ -149,9 +171,28 @@ $(function() {
 
     var data = localStorage.getItem(key);
     if (data) {
-      bests = data.split(',');
-    } else {
-      bests = [];
+      if (data[0] == '{') {
+        var parsedData = JSON.parse(data);
+        switch (parsedData.v) {
+          case 2:
+            bests = parsedData.best;
+            golds = parsedData.golds;
+            break;
+
+          default:
+            console.log('Unknown data format version ' + parsedData.v);
+            break;
+        }
+      } else {
+        console.log('Legacy data found');
+        bests = data.split(',');
+        golds.push(+bests[0]);
+        for (var i = 1; i < bests.length; ++i) {
+          golds.push(bests[i] - bests[i - 1]);
+        }
+      }
+
+      console.log('Got data: ' + data);
     }
 
     $('#background').attr('src', key + '.png');

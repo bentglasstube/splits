@@ -53,6 +53,10 @@ td.under {
   color: #7f7;
 }
 
+td.gold {
+  color: #fd0;
+}
+
 p#current {
   font-size: 24px;
   text-align: right;
