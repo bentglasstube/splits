@@ -54,6 +54,7 @@ $(function() {
     if (delta < golds[timer.index]) {
       console.log('Gold split!');
       $($('#splits tr td:first-child')[timer.index]).addClass('gold');
+      new FireworkBurst($('.viewable'), 10);
     } else {
       console.log('Not gold: ' + delta + ' >= ' + golds[timer.index]);
     }
@@ -165,6 +166,7 @@ $(function() {
     }
 
     if (bestTime == undefined || bestTime == 0 || thisTime < bestTime) {
+      new FireworkBurst($('.viewable'), 100);
       console.log('New PB, saving run');
       bests = timer.times;
     } else {

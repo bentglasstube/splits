@@ -11,10 +11,11 @@ body {
   text-align: center;
 }
 
-div {
+div.viewable {
   width: 340px;
   height: 480px;
   position: relative;
+  overflow: hidden;
 }
 
 table {
@@ -80,4 +81,11 @@ a {
 
 a:hover {
   color: #88f;
+}
+
+.firework {
+  position: absolute;
+  display: block;
+  height: 4px;
+  width: 4px;
 }
