@@ -52,7 +52,7 @@ $(function() {
 
     timer.times[timer.index] = thisTime;
     if (delta < golds[timer.index]) {
-      console.log('Gold split!');
+      console.log('Gold split! ' + delta + ' < ' + golds[timer.index]);
       $($('#splits tr td:first-child')[timer.index]).addClass('gold');
       new FireworkBurst($('.viewable'), 10);
     } else {
@@ -64,7 +64,7 @@ $(function() {
 
     if (timer.index >= game.splits.length) {
       stop();
-      saveRun();
+      checkForPB();
     }
   };
 
@@ -153,28 +153,38 @@ $(function() {
     return ts;
   };
 
+  const currentVersion = 3;
   var saveRun = function() {
+    var run = { v: currentVersion, golds: {}, best: {} };
+    for (var i = 0; i < game.splits.length; ++i) {
+      run.golds[game.splits[i].id] = golds[i];
+      run.best[game.splits[i].id] = bests[i];
+    }
+
+    console.log('Saving data: ' + JSON.stringify(run));
+    localStorage.setItem(game.key, JSON.stringify(run));
+  };
+
+  var checkForPB = function() {
     const thisTime = timer.times[game.splits.length - 1];
     const bestTime = bests[game.splits.length - 1];
 
     for (var i = 0; i < game.splits.length; ++i) {
       const delta = i > 0 ? timer.times[i] - timer.times[i - 1] : timer.times[i];
       if (golds[i] == undefined || delta < golds[i]) {
-        console.log('Saving gold for ' + game.splits[i]);
+        console.log('Saving gold for ' + game.splits[i].name);
         golds[i] = delta;
       }
     }
 
     if (bestTime == undefined || bestTime == 0 || thisTime < bestTime) {
       new FireworkBurst($('.viewable'), 100);
-      console.log('New PB, saving run');
       bests = timer.times;
+      console.log('New PB, saving run');
+      saveRun();
     } else {
       console.log('Not better than PB (' + thisTime + ' > ' + bestTime + '), ignoring');
     }
-
-    var run = { v: 2, golds: golds, best: bests };
-    localStorage.setItem(game.key, JSON.stringify(run));
   };
 
   var addInfo = function(label, id, value) {
@@ -194,7 +204,7 @@ $(function() {
 
     $('#splits').empty();
     for (var i = 0; i < game.splits.length; ++i) {
-      $('#splits').append('<tr><td>' + game.splits[i] + '</td><td class="time"></td><td class="time"></td></tr>');
+      $('#splits').append('<tr><td>' + game.splits[i].name + '</td><td class="time"></td><td class="time"></td></tr>');
     }
 
     var data = localStorage.getItem(key);
@@ -207,9 +217,22 @@ $(function() {
             golds = parsedData.golds;
             break;
 
+          case 3:
+            for (var i = 0; i < game.splits.length; ++i) {
+              const id = game.splits[i].id;
+              bests.push(parsedData.best[id]);
+              golds.push(parsedData.golds[id]);
+            }
+            break;
+
           default:
             console.log('Unknown data format version ' + parsedData.v);
             break;
+        }
+
+        if (parsedData.v < currentVersion) {
+          console.log('Found old data version, saving existing run with new format');
+          saveRun();
         }
       } else {
         console.log('Legacy data found');
