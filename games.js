@@ -130,7 +130,7 @@ var games = {
     'splits': [
       { id: 'stage 1-1', name: 'Stage 1-1', },
       { id: 'stage 1-2', name: 'Stage 1-2', },
-      { id: 'dr gene splicer', name:   'Dr Gene Splicer', },
+      { id: 'dragshake', name:   'Dr Gene Splicer', },
       { id: 'stage 2-1', name: 'Stage 2-1', },
       { id: 'stage 2-2', name: 'Stage 2-2', },
       { id: 'pirate', name: 'Pirate', },
@@ -140,8 +140,8 @@ var games = {
       { id: 'stage 4-1', name: 'Stage 4-1', },
       { id: 'stage 4-2', name: 'Stage 4-2', },
       { id: 'danky kang', name: 'Danky Kang', },
-      { id: 'collect birds', name: 'Collect Birds', },
-      { id: 'montana max', name: 'Montana Max', },
+      { id: 'collect idiots', name: 'Collect Birds', },
+      { id: 'monty hall', name: 'Montana Max', },
     ],
   },
 };
