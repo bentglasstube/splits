@@ -34,6 +34,14 @@ h2 {
   font-size: 16px;
 }
 
+button {
+  margin: auto;
+  background: #444;
+  border: 1px solid #fff;
+  font-family: Joystix, sans-serif;
+  color: #fff;
+}
+
 table {
   border-collapse: collapse;
 }

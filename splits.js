@@ -1,8 +1,119 @@
 $(function() {
+  const API_KEY = 'AIzaSyCwqvz_8dfscK14uLAJd_StAnDKozL3uck';
+  const CLIENT_ID = '1097783156099-mpq2ronpn9mek0eibqq8dn3im0lpur8i.apps.googleusercontent.com';
+  const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'];
+
   var timer = {};
   var game = {};
   var bests = [];
   var golds = [];
+  var driveSignedIn = false;
+
+  var updateSigninStatus = function(isSignedIn) {
+    driveSignedIn = isSignedIn;
+    if (driveSignedIn) {
+      $('button').hide();
+      load();
+    }
+  }
+
+  var initClient = function() {
+    gapi.client.init({
+      apiKey: API_KEY,
+      clientId: CLIENT_ID,
+      discoveryDocs: DISCOVERY_DOCS,
+      scope: 'https://www.googleapis.com/auth/drive.file',
+    }).then(function() {
+      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    });
+  }
+
+  var driveLoad = function(key) {
+    gapi.client.drive.files.list({
+      pageSize: 10,
+      fields: 'nextPageToken, files(id)',
+      q: 'name = "' + key + '.splits.json"',
+    }).then(function(response) {
+      var files = response.result.files;
+      if (files) {
+        if (files.length == 0) {
+          console.log('No data in drive, saving');
+          driveSave(key);
+        } else if (files.length > 1) {
+          console.log('Multiple files for ' + key + ', ignoring them all');
+        } else {
+          console.log('Loading data from drive.');
+          game.fileId = files[0].id;
+          gapi.client.drive.files.get({
+            fileId: game.fileId,
+            alt: 'media',
+          }).then(function(response) {
+            var dirty = false;
+            var data = parseData(response.body);
+
+            var localBest = bests[bests.length - 1] || Infinity;
+            var driveBest = data.bests[data.bests.length - 1] || Infinity;
+
+            if (localBest != driveBest) dirty = true;
+            if (driveBest < localBest) {
+              console.log('drive PB better, swapping');
+              bests = data.bests
+            }
+
+            for (var i = 0; i < game.splits.length; ++i) {
+              if (golds[i] != data.golds[i]) dirty = true;
+              if ((data.golds[i] || Infinity) < (golds[i] || Infinity)) {
+                console.log('drive gold for ' + game.splits[i].id + ' better, using');
+                golds[i] = data.golds[i];
+              }
+            }
+            if (dirty) {
+              reset();
+              saveRun();
+            }
+          });
+        }
+      }
+    });
+  }
+
+  var driveSave = function(key) {
+    var boundary = '553824cfbc9d16d87b5db64abaf2c11f8521299b';
+    var delim = '\r\n--' + boundary + '\r\n';
+    var end_delim = '\r\n--' + boundary + '--';
+
+    var data = localStorage.getItem(key);
+    var meta = {
+      title: key + '.splits.json',
+      mimeType: 'application/json',
+    }
+
+    var jsonHeader = 'Content-Type: application/json\r\n\r\n';
+
+    var body = delim + jsonHeader + JSON.stringify(meta);
+    body += delim + jsonHeader + data + end_delim;
+
+    // using v2 because v3 gave 404s
+    var path = '/upload/drive/v2/files';
+    if (game.fileId) path += '/' + game.fileId;
+
+    gapi.client.request({
+      path: path,
+      method: game.fileId ? 'PUT' : 'POST',
+      params: { 'uploadType': 'multipart' },
+      body: body,
+      headers: {
+        'Content-Type': 'multipart/related; boundary="' + boundary + '"',
+      }
+    }).execute(function(response) {
+      if (response) {
+        console.log('Saved data to google drive');
+      } else {
+        console.log('Error saving to drive');
+      }
+    });
+  }
 
   var running = function() {
     return timer.timer_id > 0;
@@ -163,6 +274,7 @@ $(function() {
 
     console.log('Saving data: ' + JSON.stringify(run));
     localStorage.setItem(game.key, JSON.stringify(run));
+    if (driveSignedIn) driveSave(game.key);
   };
 
   var checkForPB = function() {
@@ -195,9 +307,53 @@ $(function() {
     $('#info').append('<tr>' + tds.join('') + '</tr>');
   };
 
+  var parseData = function(data) {
+    var result = {
+      bests: [],
+      golds: [],
+    };
+
+    if (data[0] == '{') {
+      var parsedData = JSON.parse(data);
+      switch (parsedData.v) {
+        case 2:
+          result.bests = parsedData.best;
+          result.golds = parsedData.golds;
+          break;
+
+        case 3:
+          for (var i = 0; i < game.splits.length; ++i) {
+            const id = game.splits[i].id;
+            result.bests.push(parsedData.best[id]);
+            result.golds.push(parsedData.golds[id]);
+          }
+          break;
+
+        default:
+          console.log('Unknown data format version ' + parsedData.v);
+          break;
+      }
+
+      if (parsedData.v < currentVersion) {
+        console.log('Found old data version, saving existing run with new format');
+      }
+    } else {
+      console.log('Legacy data found');
+      result.bests = data.split(',');
+      result.golds.push(+result.bests[0]);
+      for (var i = 1; i < result.bests.length; ++i) {
+        result.golds.push(result.bests[i] - result.bests[i - 1]);
+      }
+    }
+
+    return result;
+  }
+
   var loadGame = function(key) {
     game = games[key];
     game.key = key;
+    bests = [];
+    golds = [];
 
     $('#game').text(games[key].title);
     $('#category').text(games[key].category);
@@ -209,42 +365,13 @@ $(function() {
 
     var data = localStorage.getItem(key);
     if (data) {
-      if (data[0] == '{') {
-        var parsedData = JSON.parse(data);
-        switch (parsedData.v) {
-          case 2:
-            bests = parsedData.best;
-            golds = parsedData.golds;
-            break;
-
-          case 3:
-            for (var i = 0; i < game.splits.length; ++i) {
-              const id = game.splits[i].id;
-              bests.push(parsedData.best[id]);
-              golds.push(parsedData.golds[id]);
-            }
-            break;
-
-          default:
-            console.log('Unknown data format version ' + parsedData.v);
-            break;
-        }
-
-        if (parsedData.v < currentVersion) {
-          console.log('Found old data version, saving existing run with new format');
-          saveRun();
-        }
-      } else {
-        console.log('Legacy data found');
-        bests = data.split(',');
-        golds.push(+bests[0]);
-        for (var i = 1; i < bests.length; ++i) {
-          golds.push(bests[i] - bests[i - 1]);
-        }
-      }
-
-      console.log('Got data: ' + data);
+      var result = parseData(data);
+      bests = result.bests;
+      golds = result.golds;
     }
+    if (driveSignedIn) driveLoad(key);
+
+    $('button').hide();
 
     $('#info').empty();
     if (golds.length > 0) {
@@ -300,6 +427,14 @@ $(function() {
     if (running()) nextSplit();
   });
 
+  $('#auth').click(function() {
+    gapi.auth2.getAuthInstance().signIn();
+  })
+
+  $('#hide').click(function() {
+    $('button').hide();
+  })
+
   var load = function() {
     if (location.hash) {
       loadGame(location.hash.replace('#',''));
@@ -310,4 +445,5 @@ $(function() {
 
   $(window).on('hashchange', load);
   load();
+  gapi.load('client:auth2', initClient);
 });
