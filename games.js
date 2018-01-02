@@ -150,4 +150,19 @@ var games = {
       { id: 'montana max', name: 'Monty Hall', },
     ],
   },
+  'simonsquest': {
+    'title': 'Castlevania II: Simon\'s Quest',
+    'category': 'Any %',
+    'offset': -4880,
+    'splits': [
+      { id: 'chain', name: 'Chain Whip', },
+      { id: 'heart', name: 'Dracula\'s Heart', },
+      { id: 'rib', name: 'Dracula\'s Rib', },
+      { id: 'eye', name: 'Dracula\'s Eye', },
+      { id: 'boost', name: 'Slime Boost', },
+      { id: 'ring', name: 'Dracula\'s Ring', },
+      { id: 'nail', name: 'Dracula\'s Nail', },
+      { id: 'dracula', name: 'Dracula', },
+    ],
+  },
 };
