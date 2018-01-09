@@ -281,11 +281,13 @@ $(function() {
     const thisTime = timer.times[game.splits.length - 1];
     const bestTime = bests[game.splits.length - 1];
 
+    var dirty = false;
     for (var i = 0; i < game.splits.length; ++i) {
       const delta = i > 0 ? timer.times[i] - timer.times[i - 1] : timer.times[i];
       if (golds[i] == undefined || delta < golds[i]) {
         console.log('Saving gold for ' + game.splits[i].name);
         golds[i] = delta;
+        dirty = true;
       }
     }
 
@@ -293,10 +295,12 @@ $(function() {
       new FireworkBurst($('.viewable'), 100);
       bests = timer.times;
       console.log('New PB, saving run');
-      saveRun();
+      dirty = true;
     } else {
       console.log('Not better than PB (' + thisTime + ' > ' + bestTime + '), ignoring');
     }
+
+    if (dirty) saveRun();
   };
 
   var addInfo = function(label, id, value) {
