@@ -59,7 +59,6 @@ var games = {
       { id: 'palace 3', name: 'Palace 3', },
       { id: 'fire', name: 'Fire', },
       { id: 'kid', name: 'Kid', },
-      { id: 'child', name: 'Kid', },
       { id: 'reflect', name: 'Reflect', },
       { id: 'boots', name: 'Boots', },
       { id: 'palace 4', name: 'Palace 4', },
