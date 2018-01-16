@@ -1,7 +1,7 @@
 var games = {
   'tloz': {
     'title': 'The Legend of Zelda',
-    'category': 'Any% No Up+A',
+    'category': 'Any% No Up+A (2 first)',
     'offset': -1840,
     'splits': [
       { id: 'dorite 2', name: '2 Toasted Corn', },
@@ -15,6 +15,26 @@ var games = {
       { id: 'arrows', name: 'Shopping Spree', },
       { id: 'dorite 7', name: '7 Tapatio', },
       { id: 'magic', name: 'Statler', },
+      { id: 'dorite 6', name: '6 Salsa Verde', },
+      { id: 'dorite 8', name: '8 Taco', },
+      { id: 'entrance', name: 'Best Music', },
+      { id: 'princess', name: 'Zorldo', },
+    ],
+  },
+  'tloz3': {
+    'title': 'The Legend of Zelda',
+    'category': 'Any% No Up+A (3 first)',
+    'offset': -1840,
+    'splits': [
+      { id: 'dorite 3', name: '3 Nacho Cheesier', },
+      { id: 'dorite 4', name: '4 Sweet Chili', },
+      { id: 'dorite 1', name: '1 Cooler Ranch', },
+      { id: 'dorite 5', name: '5 Spicy Nacho', },
+      { id: 'red drank', name: 'Red Drank', },
+      { id: 'dorite 2', name: '2 Toasted Corn', },
+      { id: 'arrows', name: 'Shopping Spree', },
+      { id: 'dorite 7', name: '7 Tapatio', },
+      { id: 'magic', name: 'Upgrayedd', },
       { id: 'dorite 6', name: '6 Salsa Verde', },
       { id: 'dorite 8', name: '8 Taco', },
       { id: 'entrance', name: 'Best Music', },
