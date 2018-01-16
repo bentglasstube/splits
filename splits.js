@@ -5,6 +5,7 @@ $(function() {
 
   var timer = {};
   var game = {};
+  var nicname = {};
   var bests = [];
   var golds = [];
   var driveSignedIn = false;
@@ -157,7 +158,9 @@ $(function() {
     }
   };
 
-  var nextSplit = function() {
+  var nextSplit = function(index) {
+    if (index != undefined) timer.index = index;
+
     var thisTime = performance.now() - timer.start;
     var delta = timer.index == 0 ? thisTime : thisTime - timer.times[timer.index - 1];
 
@@ -187,6 +190,25 @@ $(function() {
       $($('#splits tr td:first-child')[timer.index]).removeClass('gold');
     }
   };
+
+  var checkAutoSplit = function() {
+    autosplit.checkUpdate(function(command) {
+      if (command['command'] == 'start') {
+          if (running()) { stop(); reset(); }
+          start();
+      } else if (command['command'] == 'reset') {
+          stop();
+          reset();
+      } else if (command['command'] == 'split') {
+          n = nicname[command['data']];
+          if (n != undefined) {
+              nextSplit(n);
+          }
+      } else {
+          console.log('Unknown autosplit command: ', command);
+      }
+    });
+  }
 
   var updateTimer = function() {
     var trs = $('#splits tr');
@@ -363,8 +385,10 @@ $(function() {
     $('#category').text(games[key].category);
 
     $('#splits').empty();
+    nicname = {};
     for (var i = 0; i < game.splits.length; ++i) {
       $('#splits').append('<tr><td>' + game.splits[i].name + '</td><td class="time"></td><td class="time"></td></tr>');
+      nicname[game.splits[i].id] = i;
     }
 
     var data = localStorage.getItem(key);
@@ -448,6 +472,12 @@ $(function() {
   };
 
   $(window).on('hashchange', load);
+
   load();
   gapi.load('client:auth2', initClient);
+  autosplit = new AutoSplit();
+  $('#autosplitfile').on('change', function() {
+      autosplit.setFile('autosplitfile');
+  });
+  timer.auto_id = setInterval(checkAutoSplit, 20);
 });
