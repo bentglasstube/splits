@@ -12,7 +12,7 @@ body {
 }
 
 div.viewable {
-  width: 340px;
+  width: 266px;
   height: 480px;
   position: relative;
   overflow: hidden;
@@ -26,12 +26,12 @@ table {
 
 h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 h2 {
   margin: 0 0 5px 0;
-  font-size: 16px;
+  font-size: 10px;
 }
 
 button {
