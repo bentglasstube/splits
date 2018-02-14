@@ -168,8 +168,8 @@ var games = {
     ],
   },
   'simonsquest': {
-    'title': 'Castlevania II: Simon\'s Quest',
-    'category': 'Any %',
+    'title': 'Simon\'s Quest',
+    'category': 'Any%',
     'offset': -4880,
     'splits': [
       { id: 'chain', name: 'Chain Whip', },
