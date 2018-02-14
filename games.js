@@ -70,6 +70,18 @@ var games = {
       { id: 'triforce', name: 'Triforce', },
     ],
   },
+  'z2-hammer': {
+    'title': 'Zelda II',
+    'category': 'Hammer Grab',
+    'offset': -2795,
+    'splits': [
+      { id: 'trophy', name: 'Trophy', },
+      { id: 'jump', name: 'Jump', },
+      { id: 'bagu', name: 'Bagu', },
+      { id: 'dm', name: 'Death Mountain', },
+      { id: 'hammer', name: 'Hammer', },
+    ],
+  },
   'trilogy': {
     'title': 'Zelda Rando Trilogy',
     'category': '',
