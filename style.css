@@ -34,12 +34,9 @@ h2 {
   font-size: 10px;
 }
 
-button {
-  margin: auto;
-  background: #444;
-  border: 1px solid #fff;
-  font-family: Joystix, sans-serif;
-  color: #fff;
+input, button {
+  display: block;
+  margin: 1em;
 }
 
 table {

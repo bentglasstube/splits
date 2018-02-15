@@ -13,7 +13,7 @@ $(function() {
   var updateSigninStatus = function(isSignedIn) {
     driveSignedIn = isSignedIn;
     if (driveSignedIn) {
-      $('button').hide();
+      $('#auth').hide();
       load();
     }
   }
@@ -399,8 +399,6 @@ $(function() {
     }
     if (driveSignedIn) driveLoad(key);
 
-    $('button').hide();
-
     $('#info').empty();
     if (golds.length > 0) {
       var sumOfBest = 0;
@@ -459,8 +457,13 @@ $(function() {
     gapi.auth2.getAuthInstance().signIn();
   })
 
-  $('#hide').click(function() {
-    $('button').hide();
+  $('#reset').click(function() {
+    golds[0] = bests[0];
+    for (var i = 1; i < golds.length; ++i) {
+      golds[i] = bests[i] - bests[i - 1];
+    }
+    saveRun();
+    calculateTimeSave();
   })
 
   var load = function() {
