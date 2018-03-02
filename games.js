@@ -213,4 +213,21 @@ var games = {
       { id: 'mc2', name: 'Mario Circuit 2', },
     ],
   },
+  'smb2': {
+    'title': 'Super Mario Bros. 2',
+    'category': 'NES Any%',
+    'offset': 0,
+    'splits': [
+      { id: '1-1', name: '1-1', },
+      { id: '1-2', name: '1-2', },
+      { id: '1-3', name: '1-3', },
+      { id: '4-1', name: '4-1', },
+      { id: '4-2', name: '4-2', },
+      { id: '6-1', name: '6-1', },
+      { id: '6-2', name: '6-2', },
+      { id: '6-3', name: '6-3', },
+      { id: '7-1', name: '7-1', },
+      { id: '7-2', name: '7-2', },
+    ],
+  },
 };
