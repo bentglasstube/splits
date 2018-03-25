@@ -260,7 +260,7 @@ $(function() {
       ts += '+';
     }
 
-    var cs = Math.floor(time / 10) % 100;
+    var ds = Math.floor(time / 100) % 10;
     var s = Math.floor(time / 1000) % 60;
     var m = Math.floor(time / 60000) % 60;
     var h = Math.floor(time / 3600000);
@@ -278,9 +278,7 @@ $(function() {
     ts += s;
 
     if (time < 60000) {
-      ts += '.';
-      if (cs < 10) ts += '0';
-      ts += cs;
+      ts += '.' + ds;
     }
 
     return ts;
