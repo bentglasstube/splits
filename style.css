@@ -1,18 +1,20 @@
 @font-face {
-  font-family: 'Joystix';
-  src: url('joystix.ttf') format('truetype');
+  font-family: 'pickles';
+  src: url('04b_03__.ttf') format('truetype');
 }
 
 body {
   background: #000;
   color: #fff;
-  font-family: 'Joystix';
+  font-family: 'pickles';
   margin: 0;
   text-align: center;
+  font-size: 16px;
+  line-height: 1.0;
 }
 
 div.viewable {
-  width: 266px;
+  width: 268px;
   height: 480px;
   position: relative;
   overflow: hidden;
@@ -21,17 +23,19 @@ div.viewable {
 table {
   width: 100%;
   text-align: left;
-  font-size: 8px;
+  font-size: 100%;
 }
 
 h1 {
   margin: 0;
-  font-size: 16px;
+  font-size: 150%;
+  font-weight: normal;
 }
 
 h2 {
   margin: 0 0 5px 0;
-  font-size: 10px;
+  font-size: 100%;
+  font-weight: normal;
 }
 
 input, button {
@@ -64,8 +68,19 @@ td.gold {
 }
 
 p#current {
-  font-size: 24px;
+  font-size: 400%;
   text-align: right;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  margin-bottom: -8px;
+}
+
+#info {
+  position: absolute;
+  bottom: 64px;
+  left: 0;
+  width: 100%;
 }
 
 img {
