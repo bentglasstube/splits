@@ -251,4 +251,20 @@ var games = {
       { id: 'triforce', name: 'Triforce', },
     ],
   },
+  'la': {
+    'title': 'Link\'s Awakening',
+    'category': 'Warpless',
+    'offset': 0,
+    'splits': [
+      { id: 'd1', name: 'Tail Cave', },
+      { id: 'd3', name: 'Key Cavern', },
+      { id: 'd4', name: 'Angler\'s Tunnel', },
+      { id: 'd7', name: 'Eagle\'s Tower', },
+      { id: 'd6', name: 'Face Shrine', },
+      { id: 'd5', name: 'Catfish\'s Maw', },
+      { id: 'd8', name: 'Turtle Rock', },
+      { id: 'd2', name: 'Bottle Grotto', },
+      { id: 'windfish', name: 'Windfish', },
+    ],
+  },
 };
