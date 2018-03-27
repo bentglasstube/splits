@@ -183,7 +183,7 @@ var games = {
     ],
   },
   'smb3': {
-    'title': 'Super Mario Bros 3',
+    'title': 'Super Mario Bros. 3',
     'category': 'Any% No Wrong Warp',
     'offset': 0,
     'splits': [
@@ -215,7 +215,7 @@ var games = {
   },
   'smb2': {
     'title': 'Super Mario Bros. 2',
-    'category': 'NES Any%',
+    'category': 'Any%',
     'offset': 0,
     'splits': [
       { id: '1-1', name: '1-1', },
