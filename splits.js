@@ -152,6 +152,8 @@ $(function() {
     if (save <= 0) {
       $('#time_save').text('None');
       $('#time_save').addClass('over');
+    } else if (isNaN(save))  {
+      $('#time_save').text('Unknown');
     } else {
       $('#time_save').text(formatTime(save));
       $('#time_save').removeClass('over');
@@ -398,16 +400,16 @@ $(function() {
     if (driveSignedIn) driveLoad(key);
 
     $('#info').empty();
-    if (golds.length > 0) {
-      var sumOfBest = 0;
-      for (var i = 0; i < golds.length; ++i) {
-        sumOfBest += golds[i];
-      }
-
-      addInfo('Sum of best', 'sum_best', sumOfBest);
-      addInfo('Possible time save', 'time_save', 0);
-      calculateTimeSave();
+    var sumOfBest = 0;
+    for (var i = 0; i < golds.length; ++i) {
+      sumOfBest += golds[i];
     }
+
+    addInfo('Sum of best', 'sum_best', sumOfBest);
+    addInfo('Possible time save', 'time_save', 0);
+
+    if (sumOfBest == 0) $('#sum_best').text('None');
+    calculateTimeSave();
 
     $('#background').attr('src', key + '.png');
     reset();
@@ -424,6 +426,7 @@ $(function() {
     $('#category').text('');
     $('#background').attr('src', '');
     $('#current').text('');
+    $('#info').empty();
 
     $('#splits').empty();
     var keys = Object.keys(games).sort(titleSort);
