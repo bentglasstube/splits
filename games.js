@@ -20,6 +20,7 @@ var games = {
       { id: 'princess', name: 'Zorldo', },
     ],
   },
+
   'rollergames': {
     'title': 'Rollergames',
     'category': '',
@@ -39,6 +40,7 @@ var games = {
       { id: 'diaper genie', name: 'Diaper Genie', },
     ],
   },
+
   'z2': {
     'title': 'Zelda II',
     'category': '100% All Keys',
@@ -70,18 +72,7 @@ var games = {
       { id: 'triforce', name: 'Triforce', },
     ],
   },
-  'z2-hammer': {
-    'title': 'Zelda II',
-    'category': 'Hammer Grab',
-    'offset': -2795,
-    'splits': [
-      { id: 'trophy', name: 'Trophy', },
-      { id: 'jump', name: 'Jump', },
-      { id: 'bagu', name: 'Bagu', },
-      { id: 'dm', name: 'Death Mountain', },
-      { id: 'hammer', name: 'Hammer', },
-    ],
-  },
+
   'trilogy': {
     'title': 'Zelda Rando Trilogy',
     'category': '',
@@ -94,6 +85,7 @@ var games = {
       { id: 'the past', name: 'The Past', },
     ],
   },
+
   'wacky': {
     'title': 'Wacky Races',
     'category': '',
@@ -111,6 +103,7 @@ var games = {
       { id: 'boulder-mobile', name: 'Boulder-Mobile', },
     ],
   },
+
   'panic': {
     'title': 'Panic Restaurant',
     'category': '',
@@ -124,6 +117,7 @@ var games = {
       { id: 'dessert', name: 'Dessert', },
     ],
   },
+
   'digger': {
     'title': 'Lil Digger',
     'category': '',
@@ -133,6 +127,7 @@ var games = {
       { id: 'fin', name: 'Fin', },
     ],
   },
+
   'ypm': {
     'title': 'Yume Penguin Monogatari',
     'category': '',
@@ -146,6 +141,7 @@ var games = {
       { id: 'swipe right', name: 'Swipe Right', },
     ],
   },
+
   'tinytoons': {
     'title': 'Tiny Toons Adventures',
     'category': '',
@@ -167,6 +163,7 @@ var games = {
       { id: 'montana max', name: 'Monty Hall', },
     ],
   },
+
   'simonsquest': {
     'title': 'Simon\'s Quest',
     'category': 'Any%',
@@ -182,6 +179,7 @@ var games = {
       { id: 'dracula', name: 'Dracula', },
     ],
   },
+
   'smb3': {
     'title': 'Super Mario Bros. 3',
     'category': 'Any% No Wrong Warp',
@@ -201,6 +199,7 @@ var games = {
       { id: 'Princess', name: 'Princess', },
     ],
   },
+
   'smk': {
     'title': 'Super Mario Kart',
     'category': 'Mushroom Cup 150cc',
@@ -213,6 +212,7 @@ var games = {
       { id: 'mc2', name: 'Mario Circuit 2', },
     ],
   },
+
   'smb2': {
     'title': 'Super Mario Bros. 2',
     'category': 'Any%',
@@ -230,6 +230,7 @@ var games = {
       { id: '7-2', name: '7-2', },
     ],
   },
+
   'lttp': {
     'title': 'A Link to the Past',
     'category': 'Any% No Major Glitches',
@@ -251,6 +252,7 @@ var games = {
       { id: 'triforce', name: 'Triforce', },
     ],
   },
+
   'la': {
     'title': 'Link\'s Awakening',
     'category': 'Warpless',
@@ -267,4 +269,5 @@ var games = {
       { id: 'windfish', name: 'Windfish', },
     ],
   },
+
 };
