@@ -283,4 +283,23 @@ var games = {
     ],
   },
 
+  'lotw': {
+    'title': 'Legacy of the Wizard',
+    'category': 'No Pause Jump',
+    'offset': 0,
+    'splits': [
+      { id: 'glove', name: 'Glove', },
+      { id: 'crown1', name: 'Taratunes', },
+      { id: 'crossbow', name: 'Crossbow', },
+      { id: 'mattock', name: 'Mattock', },
+      { id: 'crown2', name: 'Erebone', },
+      { id: 'wings', name: 'Wings', },
+      { id: 'tampon', name: 'Tampon', },
+      { id: 'boots', name: 'Hamburger Boots', },
+      { id: 'crown3', name: 'Archwinger', },
+      { id: 'crown4', name: 'Rockgaea', },
+      { id: 'dragon', name: 'Dragon Slayer', },
+    ],
+  },
+
 };
