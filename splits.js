@@ -387,7 +387,6 @@ $(function() {
     bests = [];
     golds = [];
 
-    $('#game').text(games[key].title);
     $('#category').text(games[key].category);
 
     $('#splits').empty();
@@ -428,7 +427,6 @@ $(function() {
   };
 
   var listGames = function() {
-    $('#game').text('Select Run');
     $('#category').text('');
     $('#background').attr('src', '');
     $('#current').text('');

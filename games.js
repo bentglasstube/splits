@@ -175,7 +175,7 @@ var games = {
 
   'smb3': {
     'title': 'Super Mario Bros. 3',
-    'category': 'Any% No Wrong Warp',
+    'category': 'Any% No WW',
     'offset': 0,
     'splits': [
       { id: '1-1', name: '1-1', },
@@ -187,8 +187,8 @@ var games = {
       { id: 'airforce', name: 'Airforce', },
       { id: '8-1', name: '8-1', },
       { id: '8-2', name: '8-2', },
-      { id: '8 Fort', name: '8-fortress', },
-      { id: 'Marines', name: 'marines', },
+      { id: '8 Fort', name: 'Castle', },
+      { id: 'Marines', name: 'Marines', },
       { id: 'Princess', name: 'Princess', },
     ],
   },
@@ -226,7 +226,7 @@ var games = {
 
   'lttp': {
     'title': 'A Link to the Past',
-    'category': 'Any% No Major Glitches',
+    'category': 'Any% NMG',
     'offset': 0,
     'splits': [
       { id: 'escape', name: 'Escape', },
