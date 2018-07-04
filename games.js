@@ -66,19 +66,6 @@ var games = {
     ],
   },
 
-  'trilogy': {
-    'title': 'Zelda Rando Trilogy',
-    'category': '',
-    'offset': 0,
-    'splits': [
-      { id: 'the legend', name:   'The Legend', },
-      { id: 'buffer', name: 'Buffer', },
-      { id: 'the adventure', name: 'The Adventure', },
-      { id: 'buffer', name: 'Buffer', },
-      { id: 'the past', name: 'The Past', },
-    ],
-  },
-
   'wacky': {
     'title': 'Wacky Races',
     'category': '',
@@ -108,16 +95,6 @@ var games = {
       { id: 'fish', name: 'Fish', },
       { id: 'meat', name: 'Meat', },
       { id: 'dessert', name: 'Dessert', },
-    ],
-  },
-
-  'digger': {
-    'title': 'Lil Digger',
-    'category': '',
-    'offset': 0,
-    'splits': [
-      { id: 'level 1', name: 'Level 1', },
-      { id: 'fin', name: 'Fin', },
     ],
   },
 
