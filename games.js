@@ -276,4 +276,18 @@ var games = {
     ],
   },
 
+  'magickingdom': {
+    'title': 'Adventures in the Magic Kingdom',
+    'category': 'Any%',
+    'offset': -750,
+    'splits': [
+      { id: 'spacemountain', name: 'No Barfing', },
+      { id: 'autopia', name: 'Shitty Mario Kart', },
+      { id: 'pirates', name: 'Claim the Dames', },
+      { id: 'haunted', name: '2 Spoopy 4 Me', },
+      { id: 'thunder', name: 'Pause Buffer', },
+      { id: 'trivia', name: 'Trivia Time', },
+    ],
+  },
+
 };
