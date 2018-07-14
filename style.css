@@ -19,6 +19,7 @@ div.viewable {
   height: 360px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 200px;
 }
 
 table {
@@ -32,6 +33,7 @@ h1 {
   font-size: 200%;
   font-weight: normal;
   letter-spacing: -3px;
+  display: none;
 }
 
 h2 {
