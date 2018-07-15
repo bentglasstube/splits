@@ -33,10 +33,6 @@ table {
 }
 
 h1 {
-  display: none;
-}
-
-h2 {
   margin: 6px 0;
   font-size: 200%;
   font-weight: normal;
