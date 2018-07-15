@@ -123,12 +123,12 @@ $(function() {
   var start = function() {
     if (timer.index < game.splits.length) {
       timer.start = performance.now() - timer.times[timer.index];
-      timer.timer_id = setInterval(updateTimer, 10);
+      timer.timer_id = requestAnimationFrame(updateTimer);
     }
   };
 
   var stop = function() {
-    clearInterval(timer.timer_id);
+    cancelAnimationFrame(timer.timer_id);
     timer.timer_id = 0;
     timer.times[timer.index] = performance.now() - timer.start;
   };
@@ -257,6 +257,8 @@ $(function() {
     var ms = Math.abs(Math.floor(current / 10) % 100);
     if (ms < 10) ms = '0' + ms;
     $('#ms').text(ms);
+
+    if (running()) timer.timer_id = requestAnimationFrame(updateTimer);
   };
 
   var formatTime = function(time, sign) {
