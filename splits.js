@@ -429,7 +429,8 @@ $(function() {
   var listGames = function() {
     $('#category').text('');
     $('#background').attr('src', '');
-    $('#current').text('');
+    $('#hms').text('');
+    $('#ms').text('');
     $('#info').empty();
 
     $('#splits').empty();
