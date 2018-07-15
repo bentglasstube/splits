@@ -84,6 +84,15 @@ p#current {
   margin-bottom: -0.05em;
 }
 
+p#current span {
+  padding: 0;
+  margin: 0;
+}
+
+#ms {
+  font-size: 50%;
+}
+
 #info {
   position: absolute;
   bottom: 4em;

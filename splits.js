@@ -250,7 +250,13 @@ $(function() {
       }
     }
 
-    $('#current').text(formatTime(current));
+    var hms = formatTime(current);
+    if (hms.indexOf('.') > 0) hms = hms.slice(0, -2);
+    $('#hms').text(hms);
+
+    var ms = Math.abs(Math.floor(current / 10) % 100);
+    if (ms < 10) ms = '0' + ms;
+    $('#ms').text(ms);
   };
 
   var formatTime = function(time, sign) {
