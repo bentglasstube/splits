@@ -251,12 +251,14 @@ var games = {
     'category': 'Any%',
     'offset': -750,
     'splits': [
+      { id: 'trivia1', name: 'Questions', },
       { id: 'spacemountain', name: 'No Barfing', },
       { id: 'autopia', name: 'Shitty Mario Kart', },
+      { id: 'trivia2', name: 'More Questions', },
       { id: 'pirates', name: 'Claim the Dames', },
       { id: 'haunted', name: '2 Spoopy 4 Me', },
       { id: 'thunder', name: 'Pause Buffer', },
-      { id: 'trivia', name: 'Trivia Time', },
+      { id: 'trivia3', name: 'Final Questions', },
     ],
   },
 
