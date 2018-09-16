@@ -93,6 +93,24 @@ p#current span {
   width: 100%;
 }
 
+#camera {
+  position: absolute;
+  display: inline;
+  top: 0;
+  left: 0;
+  width: 408px;
+  height: 540px;
+  overflow: hidden;
+  text-align: center;
+}
+
+video {
+  height: 100%;
+  width: auto;
+  margin-left: -119px;
+  /* filter: contrast(9) sepia(0.6) invert(0.8); */
+}
+
 img {
   width: 100%;
   height: auto;

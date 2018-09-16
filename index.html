@@ -6,6 +6,10 @@
   </head>
 
   <body>
+    <div id="camera">
+      <video id="cam" autoplay></video>
+    </div>
+
     <div class="viewable">
       <h1 id="category"></h1>
 
@@ -21,6 +25,7 @@
     </div>
 
     <div id="controls">
+      <button id="camtoggle">Toggle Camera</button>
       <button id="auth">Link Google Drive</button>
       <button id="reset">Reset Golds</button>
       <input id="autosplitfile" type="file">
@@ -33,6 +38,7 @@
     <script src="games.js"></script>
     <script src="fireworks.js"></script>
     <script src="splits.js"></script>
+    <script src="camera.js"></script>
   </body>
 
 </html>
