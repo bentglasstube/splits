@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Practice Mode</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="viewable">
+      <h1 class="category" contenteditable>Practice</h1>
+      <table id="splits"></table>
+      <p id="current">
+        <span id="hms"></span><span id="ms"></span>
+      </p>
+      <table id="info">
+        <tr><td>Attempts</td><td class="time" id="runs">0</td></tr>
+        <tr><td>Completion Rate</td><td class="time" id="completion">0%</td></tr>
+        <tr><td>Streak</td><td class="time" id="streak">0</td></tr>
+        <tr><td>Average Time</td><td class="time" id="averageTime">0.0</td></tr>
+        <tr><td>Best Time</td><td class="time" id="best">0.0</td></tr>
+      </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="fireworks.js"></script>
+    <script src="practice.js"></script>
+  </body>
+
+</html>
