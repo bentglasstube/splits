@@ -8,6 +8,8 @@ $(function() {
   var nicname = {};
   var bests = [];
   var golds = [];
+  var attempts = 0;
+  var completed = 0;
   var driveSignedIn = false;
 
   var updateSigninStatus = function(isSignedIn) {
@@ -69,10 +71,7 @@ $(function() {
                 golds[i] = data.golds[i];
               }
             }
-            if (dirty) {
-              reset();
-              saveRun();
-            }
+            if (dirty) reset(true);
           });
         }
       }
@@ -124,6 +123,8 @@ $(function() {
     if (timer.index < game.splits.length) {
       timer.start = performance.now() - timer.times[timer.index];
       timer.timer_id = requestAnimationFrame(updateTimer);
+      attempts += 1;
+      updateRuns();
     }
   };
 
@@ -133,7 +134,7 @@ $(function() {
     timer.times[timer.index] = performance.now() - timer.start;
   };
 
-  var reset = function() {
+  var reset = function(saveData) {
     timer.start = 0;
     timer.index = 0;
     timer.times = [game.offset];
@@ -141,7 +142,13 @@ $(function() {
     $('#splits tr td').removeClass('gold');
     updateTimer();
     calculateTimeSave();
+
+    if (saveData) saveRun();
   };
+
+  var updateRuns = function() {
+    $('#runs').text(completed + ' / ' + attempts);
+  }
 
   var calculateTimeSave = function() {
     var perfect = timer.index > 0 ? timer.times[timer.index - 1] : 0;
@@ -182,6 +189,8 @@ $(function() {
     calculateTimeSave();
 
     if (timer.index >= game.splits.length) {
+      completed += 1;
+      updateRuns();
       stop();
       checkForPB();
     }
@@ -297,13 +306,18 @@ $(function() {
     return ts;
   };
 
-  const currentVersion = 3;
+  const currentVersion = 4;
   var saveRun = function() {
-    var run = { v: currentVersion, golds: {}, best: {} };
+    var run = { v: currentVersion, golds: {}, best: {}, runs: {} };
     for (var i = 0; i < game.splits.length; ++i) {
       run.golds[game.splits[i].id] = golds[i];
       run.best[game.splits[i].id] = bests[i];
     }
+
+    run.runs = {
+      attempts: attempts,
+      completed: completed,
+    };
 
     console.log('Saving data: ' + JSON.stringify(run));
     localStorage.setItem(game.key, JSON.stringify(run));
@@ -314,13 +328,11 @@ $(function() {
     const thisTime = timer.times[game.splits.length - 1];
     const bestTime = bests[game.splits.length - 1];
 
-    var dirty = false;
     for (var i = 0; i < game.splits.length; ++i) {
       const delta = i > 0 ? timer.times[i] - timer.times[i - 1] : timer.times[i];
       if (golds[i] == undefined || delta < golds[i]) {
         console.log('Saving gold for ' + game.splits[i].name);
         golds[i] = delta;
-        dirty = true;
       }
     }
 
@@ -328,19 +340,27 @@ $(function() {
       new FireworkBurst($('.viewable'), 100);
       bests = timer.times;
       console.log('New PB, saving run');
-      dirty = true;
     } else {
       console.log('Not better than PB (' + thisTime + ' > ' + bestTime + '), ignoring');
     }
 
-    if (dirty) saveRun();
+    saveRun();
   };
 
-  var addInfo = function(label, id, value) {
-    var tds = [
-      '<td>' + label + '</td>',
-      '<td id="' + id + '" class="time">' + formatTime(value) + '</td>'
-    ];
+  var makeCell = function(id, text) {
+    return '<td id="' + id + '" class="time">' + text  + '</td>';
+  }
+
+  var cellTime = function(id, value) {
+    return makeCell(id, formatTime(value));
+  }
+
+  var cellFraction = function(id, num, den) {
+    return makeCell(id, num + ' / ' + den);
+  }
+
+  var addInfo = function(label, data) {
+    var tds = [ '<td>' + label + '</td>', data ];
     $('#info').append('<tr>' + tds.join('') + '</tr>');
   };
 
@@ -348,6 +368,7 @@ $(function() {
     var result = {
       bests: [],
       golds: [],
+      runs: { attempts: 0, completed: 0 },
     };
 
     if (data[0] == '{') {
@@ -356,6 +377,7 @@ $(function() {
         case 2:
           result.bests = parsedData.best;
           result.golds = parsedData.golds;
+          result.runs = { attempts: 0, completed: 0 };
           break;
 
         case 3:
@@ -364,6 +386,16 @@ $(function() {
             result.bests.push(parsedData.best[id]);
             result.golds.push(parsedData.golds[id]);
           }
+          result.runs = { attempts: 0, completed: 0 };
+          break;
+
+        case 4:
+          for (var i = 0; i < game.splits.length; ++i) {
+            const id = game.splits[i].id;
+            result.bests.push(parsedData.best[id]);
+            result.golds.push(parsedData.golds[id]);
+          }
+          result.runs = parsedData.runs;
           break;
 
         default:
@@ -406,6 +438,8 @@ $(function() {
       var result = parseData(data);
       bests = result.bests;
       golds = result.golds;
+      attempts = result.runs.attempts;
+      completed = result.runs.completed;
     }
     if (driveSignedIn) driveLoad(key);
 
@@ -415,14 +449,15 @@ $(function() {
       sumOfBest += golds[i];
     }
 
-    addInfo('Sum of best', 'sum_best', sumOfBest);
-    addInfo('Possible time save', 'time_save', 0);
+    addInfo('Sum of best', cellTime('sum_best', sumOfBest));
+    addInfo('Possible time save', cellTime('time_save', 0));
+    addInfo('Runs', cellFraction('runs', completed, attempts));
 
     if (sumOfBest == 0) $('#sum_best').text('None');
     calculateTimeSave();
 
     $('#background').attr('src', key + '.png');
-    reset();
+    reset(false);
   };
 
   var titleSort = function(a, b) {
@@ -452,10 +487,10 @@ $(function() {
       running() ? nextSplit() : start();
       e.preventDefault();
     } else if (e.key == 'Escape') {
-      running() ? stop() : reset();
+      running() ? stop() : reset(true);
       e.preventDefault();
     } else if (e.key == 'Backspace') {
-      running() ? prevSplit() : reset();
+      running() ? prevSplit() : reset(false);
       e.preventDefault();
     }
   });
