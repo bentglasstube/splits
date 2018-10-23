@@ -281,4 +281,22 @@ var games = {
     ],
   },
 
+  'splatterhouse': {
+    'title': 'Splatterhouse: Wanpaku Graffiti',
+    'category': 'Any %',
+    'offset': 0,
+    'splits': [
+      { id: 'thriller', name: 'Thriller', },
+      { id: 'chicken', name: 'Chicken Pot Pie', },
+      { id: 'ghost', name: 'Green Hamster', },
+      { id: 'chainsaws', name: 'Chainsaws', },
+      { id: 'spiders', name: 'Nightmares', },
+      { id: 'priest', name: 'Racist Goat', },
+      { id: 'fly', name: 'Jeff Goldblum', },
+      { id: 'demon', name: 'Wario Ware', },
+      { id: 'werefolf', name: 'Warren Zevon', },
+      { id: 'pumpkin', name: 'Screen Saver', },
+    ],
+  },
+
 };
