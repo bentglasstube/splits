@@ -166,6 +166,9 @@ $(function() {
     var thisTime = performance.now() - timer.start;
     var delta = timer.index == 0 ? thisTime : thisTime - timer.times[timer.index - 1];
 
+    // Debounce splits less than 1s apart
+    if (delta < 1000) return
+
     timer.times[timer.index] = thisTime;
     if (delta < golds[timer.index]) {
       console.log('Gold split! ' + delta + ' < ' + golds[timer.index]);
