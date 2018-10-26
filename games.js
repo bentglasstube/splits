@@ -287,9 +287,9 @@ var games = {
     'offset': 0,
     'splits': [
       { id: 'thriller', name: 'Thriller', },
+      { id: 'doll', name: 'Baby in the Corner', },
       { id: 'chicken', name: 'Chicken Pot Pie', },
       { id: 'ghost', name: 'Green Hamster', },
-      { id: 'chainsaws', name: 'Chainsaws', },
       { id: 'spiders', name: 'Nightmares', },
       { id: 'priest', name: 'Racist Goat', },
       { id: 'fly', name: 'Jeff Goldblum', },
