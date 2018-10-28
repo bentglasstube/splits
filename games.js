@@ -295,6 +295,7 @@ var games = {
       { id: 'fly', name: 'Jeff Goldblum', },
       { id: 'demon', name: 'Wario Ware', },
       { id: 'werefolf', name: 'Warren Zevon', },
+      { id: 'castle', name: 'Stormin the Castle', },
       { id: 'pumpkin', name: 'Screen Saver', },
     ],
   },
