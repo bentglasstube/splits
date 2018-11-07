@@ -8,8 +8,6 @@ $(function() {
   var nicname = {};
   var bests = [];
   var golds = [];
-  var attempts = 0;
-  var completed = 0;
   var driveSignedIn = false;
 
   var updateSigninStatus = function(isSignedIn) {
@@ -123,8 +121,6 @@ $(function() {
     if (timer.index < game.splits.length) {
       timer.start = performance.now() - timer.times[timer.index];
       timer.timer_id = requestAnimationFrame(updateTimer);
-      attempts += 1;
-      updateRuns();
     }
   };
 
@@ -145,10 +141,6 @@ $(function() {
 
     if (saveData) saveRun();
   };
-
-  var updateRuns = function() {
-    $('#runs').text(completed + ' / ' + attempts);
-  }
 
   var calculateTimeSave = function() {
     var perfect = timer.index > 0 ? timer.times[timer.index - 1] : 0;
@@ -315,8 +307,8 @@ $(function() {
     }
 
     run.runs = {
-      attempts: attempts,
-      completed: completed,
+      attempts: 0,
+      completed: 0,
     };
 
     console.log('Saving data: ' + JSON.stringify(run));
@@ -353,10 +345,6 @@ $(function() {
 
   var cellTime = function(id, value) {
     return makeCell(id, formatTime(value));
-  }
-
-  var cellFraction = function(id, num, den) {
-    return makeCell(id, num + ' / ' + den);
   }
 
   var addInfo = function(label, data) {
@@ -438,8 +426,6 @@ $(function() {
       var result = parseData(data);
       bests = result.bests;
       golds = result.golds;
-      attempts = result.runs.attempts;
-      completed = result.runs.completed;
     }
     if (driveSignedIn) driveLoad(key);
 
@@ -451,7 +437,6 @@ $(function() {
 
     addInfo('Sum of best', cellTime('sum_best', sumOfBest));
     addInfo('Possible time save', cellTime('time_save', 0));
-    addInfo('Runs', cellFraction('runs', completed, attempts));
 
     if (sumOfBest == 0) $('#sum_best').text('None');
     calculateTimeSave();
