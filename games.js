@@ -300,4 +300,30 @@ var games = {
     ],
   },
 
+  'golf': {
+    'title': 'NES Open Tournament Golf',
+    'category': 'US Course',
+    'offset': 0,
+    'splits': [
+      { id: 'hole1', name: 'Hole 1', },
+      { id: 'hole2', name: 'Hole 2', },
+      { id: 'hole3', name: 'Hole 3', },
+      { id: 'hole4', name: 'Hole 4', },
+      { id: 'hole5', name: 'Hole 5', },
+      { id: 'hole6', name: 'Hole 6', },
+      { id: 'hole7', name: 'Hole 7', },
+      { id: 'hole8', name: 'Hole 8', },
+      { id: 'hole9', name: 'Hole 9', },
+      { id: 'hole10', name: 'Hole 10', },
+      { id: 'hole11', name: 'Hole 11', },
+      { id: 'hole12', name: 'Hole 12', },
+      { id: 'hole13', name: 'Hole 13', },
+      { id: 'hole14', name: 'Hole 14', },
+      { id: 'hole15', name: 'Hole 15', },
+      { id: 'hole16', name: 'Hole 16', },
+      { id: 'hole17', name: 'Hole 17', },
+      { id: 'hole18', name: 'Hole 18', },
+    ],
+  },
+
 };
