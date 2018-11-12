@@ -181,8 +181,6 @@ $(function() {
     calculateTimeSave();
 
     if (timer.index >= game.splits.length) {
-      completed += 1;
-      updateRuns();
       stop();
       checkForPB();
     }
