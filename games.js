@@ -326,4 +326,18 @@ var games = {
     ],
   },
 
+  'gauntlet': {
+    'title': 'Gauntlet (NES)',
+    'category': 'Any %',
+    'offset': 0,
+    'splits': [
+      { id: 'castle', name: 'Castle', },
+      { id: 'forest', name: 'Forest', },
+      { id: 'sewer', name: 'Sewer', },
+      { id: 'mermaid', name: 'Mermaid', },
+      { id: 'dragon', name: 'Dragon', },
+      { id: 'vault', name: 'Vault', },
+    ],
+  },
+
 };
