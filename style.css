@@ -16,9 +16,11 @@ body {
 
 div.viewable {
   width: 402px;
-  height: 540px;
+  height: 720px;
   position: relative;
   overflow: hidden;
+  background: url('andy.png');
+  background-opacity: 0.5;
 }
 
 #controls {
@@ -99,7 +101,7 @@ p#current span {
   top: 0;
   left: 0;
   width: 408px;
-  height: 540px;
+  height: 720px;
   overflow: hidden;
   text-align: center;
 }
@@ -107,19 +109,7 @@ p#current span {
 video {
   height: 100%;
   width: auto;
-  margin-left: -119px;
-  /* filter: contrast(9) sepia(0.6) invert(0.8); */
-}
-
-img {
-  width: 100%;
-  height: auto;
-  image-rendering: pixelated;
-  position: absolute;
-  z-index: -1;
-  bottom: 0;
-  left: 0;
-  opacity: 0.4;
+  margin-left: -436px;
 }
 
 a {

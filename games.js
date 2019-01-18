@@ -264,17 +264,11 @@ var games = {
 
   'lotw': {
     'title': 'Legacy of the Wizard',
-    'category': 'No Pause Jump',
+    'category': 'Any %',
     'offset': 0,
     'splits': [
-      { id: 'glove', name: 'Glove', },
       { id: 'crown1', name: 'Taratunes', },
-      { id: 'crossbow', name: 'Crossbow', },
-      { id: 'mattock', name: 'Mattock', },
       { id: 'crown2', name: 'Erebone', },
-      { id: 'wings', name: 'Wings', },
-      { id: 'tampon', name: 'Tampon', },
-      { id: 'boots', name: 'Hamburger Boots', },
       { id: 'crown3', name: 'Archwinger', },
       { id: 'crown4', name: 'Rockgaea', },
       { id: 'dragon', name: 'Dragon Slayer', },
@@ -335,8 +329,93 @@ var games = {
       { id: 'forest', name: 'Forest', },
       { id: 'sewer', name: 'Sewer', },
       { id: 'mermaid', name: 'Mermaid', },
-      { id: 'dragon', name: 'Dragon', },
-      { id: 'vault', name: 'Vault', },
+      { id: 'dragon', name: 'Password', },
+      { id: 'vault', name: 'Orb Get', },
+    ],
+  },
+
+  'yoshiscookie': {
+    'title': 'Yoshi\'s Cookie (NES)',
+    'category': 'Round 1',
+    'offset': 0,
+    'splits': [
+      { id: 'stage1', name: 'Stage 1', },
+      { id: 'stage2', name: 'Stage 2', },
+      { id: 'stage3', name: 'Stage 3', },
+      { id: 'stage4', name: 'Stage 4', },
+      { id: 'stage5', name: 'Stage 5', },
+      { id: 'stage6', name: 'Stage 6', },
+      { id: 'stage7', name: 'Stage 7', },
+      { id: 'stage8', name: 'Stage 8', },
+      { id: 'stage9', name: 'Stage 9', },
+      { id: 'stage10', name: 'Stage 10', },
+    ],
+  },
+
+  'lildigger': {
+    'title': 'Lil Digger',
+    'category': 'Any %',
+    'offset': 0,
+    'splits': [
+      { id: 'level 1', name: 'Level 1', },
+      { id: 'fin', name: 'Fin', },
+    ],
+  },
+
+  'anticipation': {
+    'title': 'Anticipation',
+    'category': 'Very Hard',
+    'offset': 0,
+    'splits': [
+      { id: 'stage1', name: 'Claude Monet', },
+      { id: 'stage2', name: 'Vincent Van Gogh', },
+      { id: 'stage3', name: 'Pablo Picasso', },
+      { id: 'stage4', name: 'Bob Ross', },
+     ],
+  },
+
+  'yoshi': {
+    'title': 'Yoshi',
+    'category': 'B Type',
+    'offset': 0,
+    'splits': [
+      { id: 'stage1', name: 'Oreo', },
+      { id: 'stage2', name: 'Chips Ahoy', },
+      { id: 'stage3', name: 'Nilla Wafer', },
+      { id: 'stage4', name: 'E.L. Fudge', },
+      { id: 'stage5', name: 'Fig Newton', },
+    ],
+  },
+
+  'lolo2': {
+    'title': 'Adventures of Lolo II',
+    'category': 'Any %',
+    'offset': 0,
+    'splits': [
+      { id: 'floor1', name: 'Floor 1', },
+      { id: 'floor2', name: 'Floor 2', },
+      { id: 'floor3', name: 'Floor 3', },
+      { id: 'floor4', name: 'Floor 4', },
+      { id: 'floor5', name: 'Floor 5', },
+      { id: 'floor6', name: 'Floor 6', },
+      { id: 'floor7', name: 'Floor 7', },
+      { id: 'floor8', name: 'Floor 8', },
+      { id: 'floor9', name: 'Floor 9', },
+      { id: 'castle', name: 'Castle', },
+    ],
+  },
+
+  'ducktales': {
+    'title': 'DuckTales',
+    'category': 'Any %',
+    'offset': -920,
+    'splits': [
+      { id: 'moon', name: 'The Moon', },
+      { id: 'transylvania', name: 'Transylvania', },
+      { id: 'amazon', name: 'The Amazon', },
+      { id: 'mines', name: 'African Mines', },
+      { id: 'himalayas', name: 'The Himalayas', },
+      { id: 'lastboss', name: 'Dracula Duck', },
     ],
   },
 
