@@ -19,8 +19,6 @@ div.viewable {
   height: 720px;
   position: relative;
   overflow: hidden;
-  /* background: url('andy.png'); */
-  background-opacity: 0.5;
 }
 
 #controls {
@@ -95,23 +93,6 @@ p#current span {
   width: 100%;
 }
 
-#camera {
-  position: absolute;
-  display: inline;
-  top: 0;
-  left: 0;
-  width: 408px;
-  height: 720px;
-  overflow: hidden;
-  text-align: center;
-}
-
-video {
-  height: 100%;
-  width: auto;
-  margin-left: -436px;
-}
-
 a {
   text-decoration: none;
   color: #fff;
@@ -126,4 +107,10 @@ a:hover {
   display: block;
   height: 4px;
   width: 4px;
+}
+
+textarea {
+  margin-top: 32px;
+  width: 402px;
+  height: 128px;
 }

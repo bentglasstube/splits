@@ -1,117 +1,8 @@
 $(function() {
-  const API_KEY = 'AIzaSyCwqvz_8dfscK14uLAJd_StAnDKozL3uck';
-  const CLIENT_ID = '1097783156099-mpq2ronpn9mek0eibqq8dn3im0lpur8i.apps.googleusercontent.com';
-  const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'];
-
   var timer = {};
   var game = {};
-  var nicname = {};
   var bests = [];
   var golds = [];
-  var driveSignedIn = false;
-
-  var updateSigninStatus = function(isSignedIn) {
-    driveSignedIn = isSignedIn;
-    if (driveSignedIn) {
-      $('#auth').hide();
-      load();
-    }
-  }
-
-  var initClient = function() {
-    gapi.client.init({
-      apiKey: API_KEY,
-      clientId: CLIENT_ID,
-      discoveryDocs: DISCOVERY_DOCS,
-      scope: 'https://www.googleapis.com/auth/drive.file',
-    }).then(function() {
-      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    });
-  }
-
-  var driveLoad = function(key) {
-    gapi.client.drive.files.list({
-      pageSize: 10,
-      fields: 'nextPageToken, files(id)',
-      q: 'name = "' + key + '.splits.json"',
-    }).then(function(response) {
-      var files = response.result.files;
-      if (files) {
-        if (files.length == 0) {
-          console.log('No data in drive, saving');
-          driveSave(key);
-        } else if (files.length > 1) {
-          console.log('Multiple files for ' + key + ', ignoring them all');
-        } else {
-          console.log('Loading data from drive.');
-          game.fileId = files[0].id;
-          gapi.client.drive.files.get({
-            fileId: game.fileId,
-            alt: 'media',
-          }).then(function(response) {
-            var dirty = false;
-            var data = parseData(response.body);
-
-            var localBest = bests[bests.length - 1] || Infinity;
-            var driveBest = data.bests[data.bests.length - 1] || Infinity;
-
-            if (localBest != driveBest) dirty = true;
-            if (driveBest < localBest) {
-              console.log('drive PB better, swapping');
-              bests = data.bests
-            }
-
-            for (var i = 0; i < game.splits.length; ++i) {
-              if (golds[i] != data.golds[i]) dirty = true;
-              if ((data.golds[i] || Infinity) < (golds[i] || Infinity)) {
-                console.log('drive gold for ' + game.splits[i].id + ' better, using');
-                golds[i] = data.golds[i];
-              }
-            }
-            if (dirty) reset(true);
-          });
-        }
-      }
-    });
-  }
-
-  var driveSave = function(key) {
-    var boundary = '553824cfbc9d16d87b5db64abaf2c11f8521299b';
-    var delim = '\r\n--' + boundary + '\r\n';
-    var end_delim = '\r\n--' + boundary + '--';
-
-    var data = localStorage.getItem(key);
-    var meta = {
-      title: key + '.splits.json',
-      mimeType: 'application/json',
-    }
-
-    var jsonHeader = 'Content-Type: application/json\r\n\r\n';
-
-    var body = delim + jsonHeader + JSON.stringify(meta);
-    body += delim + jsonHeader + data + end_delim;
-
-    // using v2 because v3 gave 404s
-    var path = '/upload/drive/v2/files';
-    if (game.fileId) path += '/' + game.fileId;
-
-    gapi.client.request({
-      path: path,
-      method: game.fileId ? 'PUT' : 'POST',
-      params: { 'uploadType': 'multipart' },
-      body: body,
-      headers: {
-        'Content-Type': 'multipart/related; boundary="' + boundary + '"',
-      }
-    }).execute(function(response) {
-      if (response) {
-        console.log('Saved data to google drive');
-      } else {
-        console.log('Error saving to drive');
-      }
-    });
-  }
 
   var running = function() {
     return timer.timer_id > 0;
@@ -206,25 +97,6 @@ $(function() {
       $($('#splits tr td:first-child')[timer.index]).removeClass('gold');
     }
   };
-
-  var checkAutoSplit = function() {
-    autosplit.checkUpdate(function(command) {
-      if (command['command'] == 'start') {
-          if (running()) { stop(); reset(); }
-          start();
-      } else if (command['command'] == 'reset') {
-          stop();
-          reset();
-      } else if (command['command'] == 'split') {
-          n = nicname[command['data']];
-          if (n != undefined) {
-              nextSplit(n);
-          }
-      } else {
-          console.log('Unknown autosplit command: ', command);
-      }
-    });
-  }
 
   var updateTimer = function() {
     var trs = $('#splits tr');
@@ -323,7 +195,6 @@ $(function() {
 
     console.log('Saving data: ' + JSON.stringify(run));
     localStorage.setItem(game.key, JSON.stringify(run));
-    if (driveSignedIn) driveSave(game.key);
   };
 
   var checkForPB = function() {
@@ -333,7 +204,7 @@ $(function() {
     for (var i = 0; i < game.splits.length; ++i) {
       const delta = i > 0 ? timer.times[i] - timer.times[i - 1] : timer.times[i];
       if (golds[i] == undefined || delta < golds[i]) {
-        console.log('Saving gold for ' + game.splits[i].name);
+        console.log('Saving gold for ' + game.splits[i]);
         golds[i] = delta;
       }
     }
@@ -380,7 +251,7 @@ $(function() {
 
         case 3:
           for (var i = 0; i < game.splits.length; ++i) {
-            const id = game.splits[i].id;
+            const id = game.splits[i];
             result.bests.push(parsedData.best[id]);
             result.golds.push(parsedData.golds[id]);
           }
@@ -389,7 +260,7 @@ $(function() {
 
         case 4:
           for (var i = 0; i < game.splits.length; ++i) {
-            const id = game.splits[i].id;
+            const id = game.splits[i];
             result.bests.push(parsedData.best[id]);
             result.golds.push(parsedData.golds[id]);
           }
@@ -425,10 +296,8 @@ $(function() {
     $('#category').text(games[key].category);
 
     $('#splits').empty();
-    nicname = {};
     for (var i = 0; i < game.splits.length; ++i) {
-      $('#splits').append('<tr><td>' + game.splits[i].name + '</td><td class="time"></td><td class="time"></td></tr>');
-      nicname[game.splits[i].id] = i;
+      $('#splits').append('<tr><td>' + game.splits[i] + '</td><td class="time"></td><td class="time"></td></tr>');
     }
 
     var data = localStorage.getItem(key);
@@ -437,7 +306,8 @@ $(function() {
       bests = result.bests;
       golds = result.golds;
     }
-    if (driveSignedIn) driveLoad(key);
+
+    $('#data').text(data);
 
     $('#info').empty();
     calcSumOfBest();
@@ -469,7 +339,7 @@ $(function() {
     }
   };
 
-  $(document).keydown(function(e) {
+  $('#splits').keydown(function(e) {
     if (e.key == ' ') {
       running() ? nextSplit() : start();
       e.preventDefault();
@@ -486,18 +356,10 @@ $(function() {
     if (running()) nextSplit();
   });
 
-  $('#auth').click(function() {
-    gapi.auth2.getAuthInstance().signIn();
-  })
-
-  $('#reset').click(function() {
-    golds[0] = bests[0];
-    for (var i = 1; i < golds.length; ++i) {
-      golds[i] = bests[i] - bests[i - 1];
-    }
-    saveRun();
-    calculateTimeSave();
-  })
+  $('#save').click(function(e) {
+    localStorage.setItem(game.key, $('#data').val());
+    load();
+  });
 
   var load = function() {
     if (location.hash) {
@@ -508,12 +370,5 @@ $(function() {
   };
 
   $(window).on('hashchange', load);
-
   load();
-  gapi.load('client:auth2', initClient);
-  autosplit = new AutoSplit();
-  $('#autosplitfile').on('change', function() {
-      autosplit.setFile('autosplitfile');
-  });
-  timer.auto_id = setInterval(checkAutoSplit, 20);
 });
