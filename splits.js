@@ -142,6 +142,18 @@ $(function() {
     if (saveData) saveRun();
   };
 
+  var calcSumOfBest = function() {
+    var sumOfBest = 0;
+    for (var i = 0; i < golds.length; ++i) {
+      sumOfBest += golds[i];
+    }
+
+    addInfo('Sum of best', cellTime('sum_best', sumOfBest));
+    addInfo('Possible time save', cellTime('time_save', 0));
+
+    if (sumOfBest == 0) $('#sum_best').text('None');
+  };
+
   var calculateTimeSave = function() {
     var perfect = timer.index > 0 ? timer.times[timer.index - 1] : 0;
     for (var i = timer.index; i < game.splits.length; ++i) {
@@ -428,15 +440,7 @@ $(function() {
     if (driveSignedIn) driveLoad(key);
 
     $('#info').empty();
-    var sumOfBest = 0;
-    for (var i = 0; i < golds.length; ++i) {
-      sumOfBest += golds[i];
-    }
-
-    addInfo('Sum of best', cellTime('sum_best', sumOfBest));
-    addInfo('Possible time save', cellTime('time_save', 0));
-
-    if (sumOfBest == 0) $('#sum_best').text('None');
+    calcSumOfBest();
     calculateTimeSave();
 
     $('#background').attr('src', key + '.png');

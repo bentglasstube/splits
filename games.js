@@ -411,12 +411,44 @@ var games = {
     'offset': -920,
     'splits': [
       { id: 'moon', name: 'The Moon', },
-      { id: 'transylvania', name: 'Transylvania', },
       { id: 'amazon', name: 'The Amazon', },
+      { id: 'transylvania', name: 'Transylvania', },
       { id: 'mines', name: 'African Mines', },
       { id: 'himalayas', name: 'The Himalayas', },
       { id: 'lastboss', name: 'Dracula Duck', },
     ],
   },
+
+  'edge20': {
+    'title': 'Edge 20',
+    'category': 'Edge 20',
+    'offset': 0,
+    'splits': [
+      { id: 'aitmk', name: '01 Adventures in the Magic Kingdom', },
+      { id: 'nesgolf', name: '02 NES Open Tournament Golf', },
+      { id: 'gauntlet', name: '03 Gauntlet', },
+      { id: 'rollergames', name: '04 Rollergames', },
+      { id: 'yoshiscookie', name: '05 Yoshi\'s Cookie', },
+      { id: 'lotwbean', name: '06 Legacy of the Wizard', },
+      { id: 'anticipation', name: '07 Anticipation', },
+      { id: 'rcproam', name: '08 R.C. Pro-Am', },
+      { id: 'rescue', name: '09 Rescue: The Embassy Mission', },
+      { id: 'yoshi', name: '10 Yoshi', },
+      { id: 'excitebike', name: '11 Excitebike', },
+      { id: 'lolo2', name: '12 Adventures of Lolo 2', },
+      { id: 'ducktales', name: '13 DuckTales', },
+      { id: 'uninvited', name: '14 Uninvited', },
+    ],
+  },
+
+  'uninvited': {
+    'title': 'Uninvited',
+    'category': 'Any %',
+    'offset': 0,
+    'splits': [
+      { id: 'wedidit', name: 'Sister', },
+    ],
+  },
+
 
 };
