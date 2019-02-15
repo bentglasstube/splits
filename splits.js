@@ -338,7 +338,7 @@ $(function() {
     }
   };
 
-  $('#splits').keydown(function(e) {
+  $(document).keydown(function(e) {
     if (e.key == ' ') {
       running() ? nextSplit() : start();
       e.preventDefault();
