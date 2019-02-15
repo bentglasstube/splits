@@ -463,4 +463,23 @@ var games = {
     ],
   },
 
+  'arkista': {
+    'title': 'Arkista\'s Ring',
+    'category': '1st Loop',
+    'offset': 0,
+    'splits': [
+      'Forest',
+      'Sewers',
+      'Mountains',
+      'Tower',
+      'Woods',
+      'Crypt',
+      'Dungeon',
+      'Spiders',
+      'Ninjas',
+      'Ogres',
+      'Stairs',
+      'Boss',
+    ],
+  },
 };
