@@ -450,5 +450,17 @@ var games = {
     ],
   },
 
+  'kats': {
+    'title': 'Rockin\' Kats',
+    'category': 'Any %',
+    'offset': 0,
+    'splits': [
+      'Downtown Street',
+      'Western Adventure',
+      'Playland',
+      'Sky Ace',
+      'I Love New York',
+    ],
+  },
 
 };
