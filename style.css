@@ -68,6 +68,10 @@ td.gold {
   color: #fd0;
 }
 
+td.old {
+  color: #999;
+}
+
 p#current {
   font-size: 400%;
   text-align: right;

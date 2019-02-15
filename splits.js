@@ -83,6 +83,10 @@ $(function() {
     if (timer.index >= game.splits.length) {
       stop();
       checkForPB();
+
+      var last = $('#splits tr:last-child td:last-child');
+      last.text(formatTime(thisTime));
+      last.removeClass('old');
     }
   };
 
@@ -128,8 +132,12 @@ $(function() {
         $(tds[1]).text('');
       }
 
-      if (bests[i] > 0) {
-        $(tds[2]).text(formatTime(bests[i]));
+      if (i < timer.index) {
+        $(tds[2]).text(formatTime(timer.times[i], false));
+        $(tds[2]).removeClass('old');
+      } else {
+        $(tds[2]).text(bests[i] > 0 ? formatTime(bests[i]) :  '');
+        $(tds[2]).addClass('old');
       }
     }
 
@@ -181,8 +189,8 @@ $(function() {
   var saveRun = function() {
     var run = { v: currentVersion, golds: {}, best: {}, runs: {} };
     for (var i = 0; i < game.splits.length; ++i) {
-      run.golds[game.splits[i].id] = golds[i];
-      run.best[game.splits[i].id] = bests[i];
+      run.golds[game.splits[i]] = golds[i];
+      run.best[game.splits[i]] = bests[i];
     }
 
     run.runs = {
@@ -294,7 +302,7 @@ $(function() {
 
     $('#splits').empty();
     for (var i = 0; i < game.splits.length; ++i) {
-      $('#splits').append('<tr><td>' + game.splits[i] + '</td><td class="time"></td><td class="time"></td></tr>');
+      $('#splits').append('<tr><td>' + game.splits[i] + '</td><td class="time"></td><td class="time old"></td></tr>');
     }
 
     var data = localStorage.getItem(key);
