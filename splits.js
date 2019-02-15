@@ -28,28 +28,25 @@ $(function() {
 
     $('#splits tr td').removeClass('gold');
     updateTimer();
-    calculateTimeSave();
+    calculateTimeSave(true);
 
     if (saveData) saveRun();
   };
 
-  var calcSumOfBest = function() {
-    var sumOfBest = 0;
-    for (var i = 0; i < golds.length; ++i) {
-      sumOfBest += golds[i];
-    }
-
-    addInfo('Sum of best', cellTime('sum_best', sumOfBest));
-    addInfo('Possible time save', cellTime('time_save', 0));
-
-    if (sumOfBest == 0) $('#sum_best').text('None');
-  };
-
-  var calculateTimeSave = function() {
+  var calculateTimeSave = function(updateSum) {
     var perfect = timer.index > 0 ? timer.times[timer.index - 1] : 0;
     for (var i = timer.index; i < game.splits.length; ++i) {
       perfect += golds[i];
     }
+
+    if (updateSum) {
+      if (perfect == 0) {
+        $('#sum_best').text('None');
+      } else {
+        $('#sum_best').text(formatTime(perfect));
+      }
+    }
+
     var save = bests[bests.length - 1] - perfect;
     if (save <= 0) {
       $('#time_save').text('None');
@@ -81,7 +78,7 @@ $(function() {
     }
 
     timer.index += 1;
-    calculateTimeSave();
+    calculateTimeSave(false);
 
     if (timer.index >= game.splits.length) {
       stop();
@@ -93,7 +90,7 @@ $(function() {
     if (timer.index > 0) {
       $($('#splits tr td.time')[timer.index]).text('');
       timer.index -= 1;
-      calculateTimeSave();
+      calculateTimeSave(false);
       $($('#splits tr td:first-child')[timer.index]).removeClass('gold');
     }
   };
@@ -310,8 +307,10 @@ $(function() {
     $('#data').text(data);
 
     $('#info').empty();
-    calcSumOfBest();
-    calculateTimeSave();
+    addInfo('Sum of best', cellTime('sum_best', ''));
+    addInfo('Possible time save', cellTime('time_save', ''));
+
+    calculateTimeSave(true);
 
     $('#background').attr('src', key + '.png');
     reset(false);
