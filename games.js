@@ -394,6 +394,12 @@ var games = {
       '12 Adventures of Lolo 2',
       '13 DuckTales',
       '14 Uninvited',
+      '15 Rockin\' Kats',
+      '16 Arkista\'s Ring',
+      '17 Kid Icarus',
+      '18 NES Play Action Football',
+      '19 ???',
+      '20 ???',
     ],
   },
 
@@ -436,6 +442,39 @@ var games = {
       'Ogres',
       'Stairs',
       'Boss',
+    ],
+  },
+
+  'kidicarus': {
+    'title': 'Kid Icarus',
+    'category': 'Any%',
+    'offset': -1100,
+    'splits': [
+      'Jump Fast',
+      'Power Up',
+      'More Jumping',
+      'EZ Boss',
+      'More Power',
+      'Go Right',
+      'Keep Going',
+      'abs(sin(x))',
+      'Up Again',
+      'Up More',
+      'How High',
+      'Wrong Warp',
+      'I\'m Finished',
+    ],
+  },
+
+  'fotball': {
+    'title': 'NES Play Action Football',
+    'category': 'One Win',
+    'offset': 0,
+    'splits': [
+      'Edgar Bennett',
+      'Desmond Howard',
+      'Reggie White',
+      'Brett Favre',
     ],
   },
 };
