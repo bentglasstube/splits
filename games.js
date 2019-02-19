@@ -264,7 +264,7 @@ var games = {
 
   'lotw': {
     'title': 'Legacy of the Wizard',
-    'category': 'Any %',
+    'category': 'Any%',
     'offset': 0,
     'splits': [
       'Taratunes',
@@ -277,7 +277,7 @@ var games = {
 
   'splatterhouse': {
     'title': 'Splatterhouse: Wanpaku Graffiti',
-    'category': 'Any %',
+    'category': 'Any%',
     'offset': 0,
     'splits': [
       'Thriller',
@@ -322,7 +322,7 @@ var games = {
 
   'gauntlet': {
     'title': 'Gauntlet (NES)',
-    'category': 'Any %',
+    'category': 'Any%',
     'offset': 0,
     'splits': [
       'Castle',
@@ -388,8 +388,8 @@ var games = {
   },
 
   'lolo2': {
-    'title': 'Adventures of Lolo II',
-    'category': 'Any %',
+    'title': 'Adventures of Lolo 2',
+    'category': 'Any%',
     'offset': 0,
     'splits': [
       'Floor 1',
@@ -407,7 +407,7 @@ var games = {
 
   'ducktales': {
     'title': 'DuckTales',
-    'category': 'Any %',
+    'category': 'Any%',
     'offset': -920,
     'splits': [
       'The Moon',
@@ -443,7 +443,7 @@ var games = {
 
   'uninvited': {
     'title': 'Uninvited',
-    'category': 'Any %',
+    'category': 'Any%',
     'offset': 0,
     'splits': [
       'Sister',
@@ -452,7 +452,7 @@ var games = {
 
   'kats': {
     'title': 'Rockin\' Kats',
-    'category': 'Any %',
+    'category': 'Any%',
     'offset': 0,
     'splits': [
       'Downtown Street',
