@@ -134,22 +134,6 @@ var games = {
     ],
   },
 
-  'simonsquest': {
-    'title': 'Simon\'s Quest',
-    'category': 'Any%',
-    'offset': -4880,
-    'splits': [
-      'Chain Whip',
-      'Dracula\'s Heart',
-      'Dracula\'s Rib',
-      'Dracula\'s Eye',
-      'Slime Boost',
-      'Dracula\'s Ring',
-      'Dracula\'s Nail',
-      'Dracula',
-    ],
-  },
-
   'smb3': {
     'title': 'Super Mario Bros. 3',
     'category': 'Any% No WW',
@@ -180,24 +164,6 @@ var games = {
       'Ghost Valley 1',
       'Bowser\'s Castle 1',
       'Mario Circuit 2',
-    ],
-  },
-
-  'smb2': {
-    'title': 'Super Mario Bros. 2',
-    'category': 'Any%',
-    'offset': 0,
-    'splits': [
-      '1-1',
-      '1-2',
-      '1-3',
-      '4-1',
-      '4-2',
-      '6-1',
-      '6-2',
-      '6-3',
-      '7-1',
-      '7-2',
     ],
   },
 
@@ -349,16 +315,6 @@ var games = {
       'Stage 8',
       'Stage 9',
       'Stage 10',
-    ],
-  },
-
-  'lildigger': {
-    'title': 'Lil Digger',
-    'category': 'Any %',
-    'offset': 0,
-    'splits': [
-      'Level 1',
-      'Fin',
     ],
   },
 
