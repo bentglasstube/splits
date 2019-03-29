@@ -497,4 +497,18 @@ var games = {
       'Muse',
     ],
   },
+
+  'toki': {
+    'title': 'Toki',
+    'category': 'Any%',
+    'offset': 0,
+    'splits': [
+      'Valleri',
+      'I\'m a Believer',
+      'Pleasant Valley Sunday',
+      'Steppin\' Stone',
+      'Last Train to Clarksville',
+      'Daydream Believer',
+    ],
+  },
 };
