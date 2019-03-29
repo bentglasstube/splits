@@ -477,4 +477,24 @@ var games = {
       'Brett Favre',
     ],
   },
+
+  'bc88': {
+    'title': 'Bionic Commando',
+    'category': 'Any%',
+    'offset': 0,
+    'splits': [
+      'Coldplay',
+      'Lou Bega',
+      'Commodores',
+      'Chicago',
+      'Eiffel 65',
+      'Jamiroquai',
+      'Brand New',
+      'Interpol',
+      'Primus',
+      'The Strokes',
+      'Fleetwood Mac',
+      'Muse',
+    ],
+  },
 };
