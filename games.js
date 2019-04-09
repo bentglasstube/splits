@@ -398,8 +398,8 @@ var games = {
       '16 Arkista\'s Ring',
       '17 Kid Icarus',
       '18 NES Play Action Football',
-      '19 ???',
-      '20 ???',
+      '19 Othello',
+      '20 Bionic Commando',
     ],
   },
 
