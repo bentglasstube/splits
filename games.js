@@ -511,4 +511,14 @@ var games = {
       'Daydream Believer',
     ],
   },
+
+  'rescue': {
+    'title': 'Rescue: The Embassy Mission',
+    'category': 'Any%',
+    'offset': 0,
+    'splits': [
+      'Jumbo',
+      'Dick',
+    ],
+  },
 };
