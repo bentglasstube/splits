@@ -1,0 +1,14 @@
+image: archlinux
+packages:
+  - rsync
+sources:
+  - https://git.sr.ht/~bentglasstube/splits
+environment:
+  deploy: 'web@eatabrick.org:splits.eatabrick.org'
+secrets:
+  - 7a7c0309-95bb-4107-9e42-96352295d661
+tasks:
+  - deploy: |
+      cd splits
+      sshopts="ssh -o StrictHostKeyChecking=no"
+      rsync --rsh="$sshopts" -arvz . "$deploy"/. --delete --exclude='.git/'
