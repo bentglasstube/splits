@@ -521,4 +521,20 @@ var games = {
       'Dick',
     ],
   },
+
+  'smb3r': {
+    'title': 'Super Mario Bros. 3 Randomizer',
+    'category': 'SMB3 Dunkin',
+    'offset': 0,
+    'splits': [
+      'World 1',
+      'World 2',
+      'World 3',
+      'World 4',
+      'World 5',
+      'World 6',
+      'World 7',
+      'World 8',
+    ],
+  },
 };
