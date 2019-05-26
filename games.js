@@ -537,4 +537,22 @@ var games = {
       'World 8',
     ],
   },
+
+  'tje': {
+    'title': 'Toe Jam & Earl',
+    'category': 'Random World',
+    'offset': 0,
+    'splits': [
+      'King Fu Fighting',
+      'Word Up',
+      'Low Rider',
+      'Brick House',
+      'Car Wash',
+      'Super Freak',
+      'Little Red Corvette',
+      'War',
+      'P-Funk',
+      'Hollywood Swinging',
+    ],
+  },
 };
