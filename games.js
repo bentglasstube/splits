@@ -539,7 +539,7 @@ var games = {
   },
 
   'tje': {
-    'title': 'Toe Jam & Earl',
+    'title': 'ToeJam & Earl',
     'category': 'Random World',
     'offset': 0,
     'splits': [
@@ -553,6 +553,26 @@ var games = {
       'War',
       'P-Funk',
       'Hollywood Swinging',
+    ],
+  },
+
+  'poketcg': {
+    'title': 'Pokemon Trading Card Game',
+    'category': 'No Tutorial',
+    'offset': 0,
+    'splits': [
+      'Grass Club',
+      'Lightning Club',
+      'Isaac',
+      'Nikki',
+      'Scyther',
+      'Gene',
+      'Mitch',
+      'Murray',
+      'Ken',
+      'Rick',
+      'Amy',
+      'Pokemon Dome',
     ],
   },
 };
