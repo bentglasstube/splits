@@ -46,6 +46,8 @@ input, button {
 
 table {
   border-collapse: collapse;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 tr.current {
@@ -79,11 +81,20 @@ p#current {
   right: 0;
   position: absolute;
   margin-bottom: -0.05em;
+  width: 100%;
 }
 
 p#current span {
   padding: 0;
   margin: 0;
+}
+
+canvas {
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  width: 100%;
+  height: 72px;
 }
 
 #ms {

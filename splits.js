@@ -99,6 +99,14 @@ $(function() {
     }
   };
 
+  var drawDigit = function(ctx, val, xo, w, h) {
+    for (var i = 0; i < 4; ++i) {
+      var bit = 2 ** i;
+      ctx.fillStyle = "rgb(216, 255, 0, " + ((val % 10) & bit ? 0.5 : 0.1) + ")";
+      ctx.fillRect(xo * w + 2, (3 - i) * h + 2, w - 4, h - 4);
+    }
+  };
+
   var updateTimer = function() {
     var trs = $('#splits tr');
     var current = running() ?  performance.now() - timer.start : timer.times[0];
@@ -148,6 +156,28 @@ $(function() {
     var ms = Math.abs(Math.floor(current / 10) % 100);
     if (ms < 10) ms = '0' + ms;
     $('#ms').text(ms);
+
+    var t = $('#current');
+    var tw = t.width();
+    var th = t.height();
+
+    var ctx = $('canvas')[0].getContext('2d', 'timer', tw, th);
+    ctx.clearRect(0, 0, tw, th);
+
+    var cw = tw / 6;
+    var ch = th / 4;
+
+    var h = Math.floor(current / 3600000);
+    var m = Math.floor(current / 60000) % 60;
+    var s = Math.floor(current / 1000) % 60;
+    var ms = current % 1000;
+
+    drawDigit(ctx, h,        0, cw, ch);
+    drawDigit(ctx, m / 10,   1, cw, ch);
+    drawDigit(ctx, m % 10,   2, cw, ch);
+    drawDigit(ctx, s / 10,   3, cw, ch);
+    drawDigit(ctx, s % 10,   4, cw, ch);
+    drawDigit(ctx, ms / 100, 5, cw, ch);
 
     if (running()) timer.timer_id = requestAnimationFrame(updateTimer);
   };
