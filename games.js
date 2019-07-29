@@ -541,4 +541,17 @@ var games = {
       'Pokemon Dome',
     ],
   },
+
+  'keyhunt': {
+    'title': 'DM Key Hunt',
+    'category': 'Find the Key',
+    'offset': 0,
+    'splits': [
+      'Zelda 1',
+      'Buffer',
+      'Zelda 2',
+      'Buffer',
+      'Final Fantasy',
+    ],
+  },
 };
