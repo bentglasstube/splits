@@ -542,16 +542,20 @@ var games = {
     ],
   },
 
-  'keyhunt': {
-    'title': 'DM Key Hunt',
-    'category': 'Find the Key',
-    'offset': 0,
+  'faxanadu': {
+    'title': 'Faxanadu',
+    'category': 'Any%',
+    'offset': -1130,
     'splits': [
-      'Zelda 1',
-      'Buffer',
-      'Zelda 2',
-      'Buffer',
-      'Final Fantasy',
+      'Chorin',
+      'Snorin',
+      'Pourin',
+      'Soarin',
+      'Scorin',
+      'Black Onyx',
+      'Battle Suit',
+      'Dragon Slayer',
+      'Useless',
     ],
   },
 };
