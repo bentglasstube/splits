@@ -545,7 +545,7 @@ var games = {
   'faxanadu': {
     'title': 'Faxanadu',
     'category': 'Any%',
-    'offset': -1130,
+    'offset': -11300,
     'splits': [
       'Chorin',
       'Snorin',
