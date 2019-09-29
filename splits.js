@@ -100,6 +100,8 @@ $(function() {
   };
 
   var drawDigit = function(ctx, val, xo, w, h) {
+    if (val < 0) val = 0;
+
     for (var i = 0; i < 4; ++i) {
       var bit = 2 ** i;
       ctx.fillStyle = "rgb(216, 255, 0, " + ((val % 10) & bit ? 0.5 : 0.1) + ")";
