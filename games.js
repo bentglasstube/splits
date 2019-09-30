@@ -549,8 +549,8 @@ var games = {
     'splits': [
       'Mattock',
       'Sky Spring',
-      'Elixir',
-      '???',
+      'Elixir Spring',
+      'Enter Mist',
       'Three Kings',
       'Black Onyx',
       'Useless Armor',
