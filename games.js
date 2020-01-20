@@ -66,6 +66,22 @@ var games = {
     ],
   },
 
+  'z2any': {
+    'title': 'Zelda II',
+    'category': 'Any%',
+    'offset': -2795,
+    'splits': [
+      'Glitch 1',
+      'Hammer',
+      'Errands',
+      'Glitch 2',
+      'Glove',
+      'Wrong Warp',
+      'Barrier',
+      'Triforce',
+    ],
+  },
+
   'wacky': {
     'title': 'Wacky Races',
     'category': '',
