@@ -546,4 +546,17 @@ var games = {
       'Useless Boss',
     ],
   },
+
+  'hh': {
+    'title': 'Hammerin\' Harry',
+    'category': 'Any%',
+    'offset': 0,
+    'splits': [
+      'Stage 1',
+      'Stage 2',
+      'Stage 3',
+      'Stage 4',
+      'Stage 5',
+    ],
+  },
 };
