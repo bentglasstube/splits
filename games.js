@@ -559,4 +559,25 @@ var games = {
       'Stage 5',
     ],
   },
+
+  'metalcombat': {
+    'title': 'Metal Combat: Falcon\'s Revenge',
+    'category': 'Any% (Falcon)',
+    'offset': 0,
+    'splits': [
+      'Garam2',
+      'Siamang',
+      'Wong',
+      'Griffin',
+      'Viscount',
+      'Thanatos',
+      'Arachnus',
+      'Cobra',
+      'Groken',
+      'Virvius',
+      'Virvius 2',
+      'Giga-Desp',
+      'Giga-Desp 2',
+    ],
+  },
 };
