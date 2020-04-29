@@ -72,7 +72,7 @@ var games = {
     'offset': -2795,
     'splits': [
       'Jump',
-      'Hammer',
+      'Death Mountain',
       'Fairy',
       'Grass Heart',
       'Palace 2',
