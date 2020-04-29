@@ -172,39 +172,6 @@ var games = {
     ],
   },
 
-  'smb3': {
-    'title': 'Super Mario Bros. 3',
-    'category': 'Any% No WW',
-    'offset': 0,
-    'splits': [
-      '1-1',
-      '1-2',
-      'Flute 1',
-      'Flute 2',
-      'Army',
-      'Navy',
-      'Airforce',
-      '8-1',
-      '8-2',
-      'Castle',
-      'Marines',
-      'Princess',
-    ],
-  },
-
-  'smk': {
-    'title': 'Super Mario Kart',
-    'category': 'Mushroom Cup 150cc',
-    'offset': 0,
-    'splits': [
-      'Mario Circuit 1',
-      'Donut Plains 1',
-      'Ghost Valley 1',
-      'Bowser\'s Castle 1',
-      'Mario Circuit 2',
-    ],
-  },
-
   'lttp': {
     'title': 'A Link to the Past',
     'category': 'Any% NMG',
@@ -298,32 +265,6 @@ var games = {
     ],
   },
 
-  'golf': {
-    'title': 'NES Open Tournament Golf',
-    'category': 'US Course',
-    'offset': 0,
-    'splits': [
-      'Hole 1',
-      'Hole 2',
-      'Hole 3',
-      'Hole 4',
-      'Hole 5',
-      'Hole 6',
-      'Hole 7',
-      'Hole 8',
-      'Hole 9',
-      'Hole 10',
-      'Hole 11',
-      'Hole 12',
-      'Hole 13',
-      'Hole 14',
-      'Hole 15',
-      'Hole 16',
-      'Hole 17',
-      'Hole 18',
-    ],
-  },
-
   'gauntlet': {
     'title': 'Gauntlet (NES)',
     'category': 'Any%',
@@ -335,24 +276,6 @@ var games = {
       'Mermaid',
       'Password',
       'Orb Get',
-    ],
-  },
-
-  'yoshiscookie': {
-    'title': 'Yoshi\'s Cookie (NES)',
-    'category': 'Round 1',
-    'offset': 0,
-    'splits': [
-      'Stage 1',
-      'Stage 2',
-      'Stage 3',
-      'Stage 4',
-      'Stage 5',
-      'Stage 6',
-      'Stage 7',
-      'Stage 8',
-      'Stage 9',
-      'Stage 10',
     ],
   },
 
@@ -529,26 +452,6 @@ var games = {
     'splits': [
       'Jumbo',
       'Dick',
-    ],
-  },
-
-  'poketcg': {
-    'title': 'Pokemon Trading Card Game',
-    'category': 'No Tutorial',
-    'offset': 0,
-    'splits': [
-      'Grass Club',
-      'Lightning Club',
-      'Isaac',
-      'Nikki',
-      'Scyther',
-      'Gene',
-      'Mitch',
-      'Murray',
-      'Ken',
-      'Rick',
-      'Amy',
-      'Pokemon Dome',
     ],
   },
 
