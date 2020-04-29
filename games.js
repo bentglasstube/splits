@@ -66,6 +66,28 @@ var games = {
     ],
   },
 
+  'z2nmg': {
+    'title': 'Zelda II',
+    'category': '100% NMG',
+    'offset': -2795,
+    'splits': [
+      'Jump',
+      'Hammer',
+      'Fairy',
+      'Grass Heart',
+      'Palace 2',
+      'Palace 3',
+      'Reflect',
+      'Boots',
+      'Palace 5',
+      'New Kasuto',
+      'Palace 6',
+      'Barrier',
+      'Triforce',
+    ],
+  },
+
+
   'z2any': {
     'title': 'Zelda II',
     'category': 'Any%',
