@@ -378,7 +378,8 @@ $(function() {
 
     calculateTimeSave(true);
 
-    $('#background').attr('src', key + '.png');
+    $('canvas').show();
+    $('.viewable').css('overflow', 'hidden');
     reset(false);
   };
 
@@ -394,6 +395,9 @@ $(function() {
     $('#hms').text('');
     $('#ms').text('');
     $('#info').empty();
+
+    $('.viewable').css('overflow', 'visible');
+    $('canvas').hide();
 
     $('#splits').empty();
     var keys = Object.keys(games).sort(titleSort);
