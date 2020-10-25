@@ -54,7 +54,6 @@ var games = {
       'Fairy',
       'Palace 2',
       'Palace 3',
-      'Fire',
       'Kid',
       'Reflect',
       'Palace 4',
