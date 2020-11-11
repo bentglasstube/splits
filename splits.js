@@ -88,6 +88,17 @@ $(function() {
     }
   };
 
+  var skipSplit = function() {
+    // Can't skip the last split
+    if (timer.index >= game.splits.length - 1) return;
+
+    timer.times[timer.index] = undefined;
+    console.log('Skipped split');
+
+    timer.index += 1;
+    calculateTimeSave(false);
+  };
+
   var prevSplit = function() {
     if (timer.index > 0) {
       $($('#splits tr td.time')[timer.index]).text('');
@@ -132,16 +143,19 @@ $(function() {
           $(tds[1]).addClass('under');
           $(tds[1]).removeClass('over');
         }
-      }
 
-      if (i <= timer.index) {
-        $(tds[1]).text(formatTime(time, true));
-      } else {
-        $(tds[1]).text('');
+        if (i <= timer.index && !isNaN(time)) {
+          $(tds[1]).text(formatTime(time, true));
+        } else {
+          $(tds[1]).text('');
+        }
       }
 
       if (i < timer.index) {
         $(tds[2]).text(formatTime(timer.times[i], false));
+        $(tds[2]).removeClass('old');
+      } else if (i == timer.index && !(bests[i] > 0)) {
+        $(tds[2]).text(formatTime(current, false));
         $(tds[2]).removeClass('old');
       } else {
         $(tds[2]).text(bests[i] > 0 ? formatTime(bests[i]) :  '');
@@ -183,6 +197,8 @@ $(function() {
   };
 
   var formatTime = function(time, sign) {
+    if (isNaN(time)) return '-';
+
     var ts = '';
     if (time < 0) {
       ts += '-';
@@ -389,6 +405,9 @@ $(function() {
       e.preventDefault();
     } else if (e.key == 'Backspace') {
       running() ? prevSplit() : reset(false);
+      e.preventDefault();
+    } else if (e.key == 'Tab') {
+      if (running()) skipSplit();
       e.preventDefault();
     }
   });
