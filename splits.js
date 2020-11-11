@@ -4,32 +4,6 @@ $(function() {
   var bests = [];
   var golds = [];
 
-  var auto_splits = [];
-
-  var auto_timer = {
-    start: performance.now(),
-    index: 0,
-  };
-
-  var updateAuto = function() {
-    var elapsed = performance.now() - auto_timer.start;
-
-    if (auto_timer.index < auto_splits.length) {
-      var target = auto_splits[auto_timer.index];
-      if (elapsed > target) {
-        running() ? nextSplit() : start();
-        auto_timer.index++;
-      }
-
-      auto_timer.timer_id = requestAnimationFrame(updateAuto);
-    }
-  };
-
-  if (auto_splits.length > 0) {
-    auto_timer.timer_id = requestAnimationFrame(updateAuto);
-    auto_timer.start = performance.now();
-  }
-
   var running = function() {
     return timer.timer_id > 0;
   };
@@ -85,9 +59,7 @@ $(function() {
     }
   };
 
-  var nextSplit = function(index) {
-    if (index != undefined) timer.index = index;
-
+  var nextSplit = function() {
     var thisTime = performance.now() - timer.start;
     var delta = timer.index == 0 ? thisTime : thisTime - timer.times[timer.index - 1];
 
