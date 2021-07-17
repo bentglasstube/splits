@@ -103,6 +103,25 @@ var games = {
     ],
   },
 
+  'winter-solstice': {
+    'title': 'Winter Solstice',
+    'category': '100% NMG',
+    'offset': -2795,
+    'splits': [
+      'Lost Woods Heart',
+      'Palace 1',
+      'Glove',
+      'Palace 2',
+      'Palace 3',
+      'Palace 4',
+      'Palace 5',
+      'Enter Palace 6',
+      'Palace 6',
+      'Enter Ice Palace',
+      'Ah! To Be Fishing.',
+    ],
+  },
+
   'wacky': {
     'title': 'Wacky Races',
     'category': '',
