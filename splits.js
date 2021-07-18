@@ -397,17 +397,21 @@ $(function() {
   };
 
   $(document).keydown(function(e) {
-    if (e.key == ' ') {
+    if (e.key == ' ' || e.key == 'F4') {
       running() ? nextSplit() : start();
       e.preventDefault();
     } else if (e.key == 'Escape') {
       running() ? stop() : reset(true);
       e.preventDefault();
-    } else if (e.key == 'Backspace') {
+    } else if (e.key == 'Backspace' || e.key == 'F7') {
       running() ? prevSplit() : reset(false);
       e.preventDefault();
-    } else if (e.key == 'Tab') {
+    } else if (e.key == 'Tab' || e.key == 'F6') {
       if (running()) skipSplit();
+      e.preventDefault();
+    } else if (e.key == 'F5') {
+      stop();
+      reset(true);
       e.preventDefault();
     }
   });
